@@ -14,22 +14,24 @@ This sample demonstrates how to use SQL server integration services and create p
 
 ## Usage
 
-- Set the login, password and all report parameters such as siteName, startDate, endDate in 'Parameters' tab
+- Set the login, password and all report parameters such as siteName, startDate, endDate in 'Parameters' tab. Note that last hour statistic included to report.
 
-<img src="https://raw.githubusercontent.com/iqp-samples/iqp-samples-integration-sqlserver/master/img/control_flow.jpg" alt="start window">
+<img src="https://github.com/iqp-samples/iqp-samples-integration-sqlserver/blob/master/img/control_flow.jpg?raw=true" alt="start window">
 
-<img src="https://raw.githubusercontent.com/iqp-samples/iqp-samples-integration-sqlserver/master/img/parameters.jpg" alt="parameters">
+<img src="https://github.com/iqp-samples/iqp-samples-integration-sqlserver/blob/master/img/parameters.jpg?raw=true" alt="parameters">
 
 - Set the SQL Server connection 
+
 <img src="https://github.com/iqp-samples/iqp-samples-integration-sqlserver/blob/master/img/sql%20server%20settings%201.jpg" alt="parameters">
 <img src="https://github.com/iqp-samples/iqp-samples-integration-sqlserver/blob/master/img/sql%20server%20settings%202.jpg" alt="parameters">
 
-    - If you don't have configured connection press 'New' and set SQL Server name and database
-    <img src="https://raw.githubusercontent.com/iqp-samples/iqp-samples-integration-sqlserver/master/img/sql%20server%20settings%203.jpg" alt="adding new SQL Server connection">
 
-    - Check the mappings in SQL destination editor. All inputs should been linked to proper output.
-    <img src="https://github.com/iqp-samples/iqp-samples-integration-sqlserver/blob/master/img/sql%20server%20mappings.jpg?raw=true" alt="mappings">
+- If you don't have configured connection press 'New' and set SQL Server name and database
     
+   <img src="https://github.com/iqp-samples/iqp-samples-integration-sqlserver/blob/master/img/sql%20server%20settings%203.jpg?raw=true" alt="adding new SQL Server connection">
+
+- Check the mappings in SQL destination editor. All inputs should been linked to proper output.
+<img src="https://github.com/iqp-samples/iqp-samples-integration-sqlserver/blob/master/img/sql%20server%20mappings.jpg?raw=true" alt="mappings">
 
 
 - Now you can run project by clicking Start button on SSDT
