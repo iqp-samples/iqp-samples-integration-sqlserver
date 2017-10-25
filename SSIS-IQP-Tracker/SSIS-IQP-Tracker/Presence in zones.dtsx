@@ -1,0 +1,3033 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/23/2017 2:10:17 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="DMITRY-LAPTOP"
+  DTS:CreatorName="dmitry-laptop\dmitry"
+  DTS:DTSID="{D127ABE0-5921-4CBA-B1A3-6D6BE5DE5301}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1049"
+  DTS:ObjectName="Package2"
+  DTS:PackageType="5"
+  DTS:VersionBuild="76"
+  DTS:VersionGUID="{91C1C86C-2791-4193-9233-C1609F1D71DF}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.Test]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DC8F9252-6DBA-4297-B86D-01A4D58518D6}"
+      DTS:ObjectName="localhost.Test">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=Test;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.tracker-SSIS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E6072880-8EF7-400B-B0D3-3E122D5B3614}"
+      DTS:ObjectName="localhost.tracker-SSIS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=tracker-SSIS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="7"
+      DTS:DTSID="{11BBFBE1-A93B-4FA4-B1EE-63927D6B1D03}"
+      DTS:ObjectName="endDate">
+      <DTS:Property
+        DTS:DataType="7"
+        DTS:Name="ParameterValue">10/21/2017 5:00:00 PM</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{669A5AF9-ABDB-49AB-B437-27BE04282552}"
+      DTS:ObjectName="login">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">krdima92@gmail.com</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{6659D767-5ABD-47AD-B5FF-3F052C8C828B}"
+      DTS:ObjectName="password">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">123456</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{EC19BB1F-9D36-4C16-9D50-93DF6DBCD8D7}"
+      DTS:ObjectName="siteName">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">Demo Minesite1</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="7"
+      DTS:DTSID="{E0073BA7-39E2-4CBB-B2C6-B0DE08EE63BB}"
+      DTS:ObjectName="startDate">
+      <DTS:Property
+        DTS:DataType="7"
+        DTS:Name="ParameterValue">10/21/2017 8:00:00 AM</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Export presence in zones"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Задача потока данных"
+      DTS:DTSID="{329EE591-1050-4939-A1A6-6AC66509C3DF}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Export presence in zones"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Export presence in zones\Pivot"
+              componentClassID="{AEB2AFAE-2201-48B1-B290-42BB8C9149DD}"
+              contactInfo="Сведение;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;1"
+              description="Сжимает поток входных данных, выполняя сведение по значению столбца. При этом снижается нормализация данных. Входные данные следует сортировать по столбцу сведения, поскольку при каждом изменении этого столбца выполняется сведение. Примечание. Повторяющиеся строки могут стать причиной ошибки при выполнении этого преобразования."
+              name="Pivot"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Вынуждает преобразование &quot;Сведение&quot; пропускать строки с нераспознанными значениями в ключевом столбце сведения и создавать отчет с полным списком несогласованных значений в конце выполнения DataFlow. Удобно для сбора списка значений из входных строк, который можно использовать для автоматического создания выходных столбцов."
+                  name="PassThroughUnmatchedPivotKeys">true</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Export presence in zones\Pivot.Inputs[Вход преобразования &quot;Сведение&quot; по умолчанию]"
+                  hasSideEffects="true"
+                  name="Вход преобразования &quot;Сведение&quot; по умолчанию">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Export presence in zones\Pivot.Inputs[Вход преобразования &quot;Сведение&quot; по умолчанию].Columns[Zone]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Zone"
+                      lineageId="Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[Zone]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Описывает, как входной столбец участвует в операции сведения. Он может определять набор взаимосвязанных записей, может содержать ключ, который однозначно определяет строку в соответствующем наборе, относительно которой выполняется сведение значений. Он может содержать значение, которое переносится в сведенный столбец, или содержать значение, которое без изменений проходит через преобразование сведения."
+                          name="PivotUsage">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export presence in zones\Pivot.Inputs[Вход преобразования &quot;Сведение&quot; по умолчанию].Columns[ControlObject]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ControlObject"
+                      lineageId="Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[ControlObject]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Описывает, как входной столбец участвует в операции сведения. Он может определять набор взаимосвязанных записей, может содержать ключ, который однозначно определяет строку в соответствующем наборе, относительно которой выполняется сведение значений. Он может содержать значение, которое переносится в сведенный столбец, или содержать значение, которое без изменений проходит через преобразование сведения."
+                          name="PivotUsage">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Export presence in zones\Pivot.Inputs[Вход преобразования &quot;Сведение&quot; по умолчанию].Columns[PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="PresenceValue"
+                      lineageId="Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Описывает, как входной столбец участвует в операции сведения. Он может определять набор взаимосвязанных записей, может содержать ключ, который однозначно определяет строку в соответствующем наборе, относительно которой выполняется сведение значений. Он может содержать значение, которое переносится в сведенный столбец, или содержать значение, которое без изменений проходит через преобразование сведения."
+                          name="PivotUsage">3</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию]"
+                  name="Выход преобразования &quot;Сведение&quot; по умолчанию">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[ControlObject]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[ControlObject]"
+                      name="ControlObject">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[ControlObject]}</property>
+                        <property
+                          dataType="System.Null"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue" />
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_East dump zone_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_East dump zone_PresenceValue]"
+                      name="C_East dump zone_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">East dump zone</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Excavator zone_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Excavator zone_PresenceValue]"
+                      name="C_Excavator zone_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">Excavator zone</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Grader Sharp turn 01_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Grader Sharp turn 01_PresenceValue]"
+                      name="C_Grader Sharp turn 01_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">Grader Sharp turn 01</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Power plant to Truck shop road_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Power plant to Truck shop road_PresenceValue]"
+                      name="C_Power plant to Truck shop road_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">Power plant to Truck shop road</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Powerplant_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Powerplant_PresenceValue]"
+                      name="C_Powerplant_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">Powerplant</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Severnaya Zona Ex_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Severnaya Zona Ex_PresenceValue]"
+                      name="C_Severnaya Zona Ex_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">Severnaya Zona Ex</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_South Shovel zone_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_South Shovel zone_PresenceValue]"
+                      name="C_South Shovel zone_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">South Shovel zone</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Special Eqmt zone_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Special Eqmt zone_PresenceValue]"
+                      name="C_Special Eqmt zone_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">Special Eqmt zone</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Truckshop_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Truckshop_PresenceValue]"
+                      name="C_Truckshop_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">Truckshop</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Warehouse_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Warehouse_PresenceValue]"
+                      name="C_Warehouse_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">Warehouse</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_West dump zone_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_West dump zone_PresenceValue]"
+                      name="C_West dump zone_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">West dump zone</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_West Speedway_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_West Speedway_PresenceValue]"
+                      name="C_West Speedway_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">West Speedway</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Work zone  3_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Work zone  3_PresenceValue]"
+                      name="C_Work zone  3_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">Work zone  3</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Work zone 1_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Work zone 1_PresenceValue]"
+                      name="C_Work zone 1_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">Work zone 1</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Work zone 2_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Work zone 2_PresenceValue]"
+                      name="C_Work zone 2_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">Work zone 2</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Work zone 4_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Work zone 4_PresenceValue]"
+                      name="C_Work zone 4_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">Work zone 4</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Workshop_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Workshop_PresenceValue]"
+                      name="C_Workshop_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">Workshop</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Workshop to Power plant road_PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Workshop to Power plant road_PresenceValue]"
+                      name="C_Workshop to Power plant road_PresenceValue">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Идентификатор журнала обращений и преобразований входного столбца, который содержит значение PivotedValue или значение -1. Значение -1 указывает, что столбец не используется в операции сведения"
+                          name="SourceColumn">#{Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]}</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает значение, соответствующее одному из возможных значений из входного столбца, который помечен как ключ сведения в свойстве PivotUsage."
+                          expressionType="Notify"
+                          name="PivotKeyValue">Workshop to Power plant road</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Export presence in zones\Pivot.Outputs[Вывод ошибок преобразования &quot;Сведение&quot;]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Вывод ошибок преобразования &quot;Сведение&quot;"
+                  synchronousInputId="Package\Export presence in zones\Pivot.Inputs[Вход преобразования &quot;Сведение&quot; по умолчанию]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Вывод ошибок преобразования &quot;Сведение&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Вывод ошибок преобразования &quot;Сведение&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Export presence in zones\Pivot.Outputs[Вывод ошибок преобразования &quot;Сведение&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Вывод ошибок преобразования &quot;Сведение&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Export presence in zones\presence in zones"
+              componentClassID="{F452EAF3-5EF0-43F1-8067-09DDF0BC6316}"
+              contactInfo="Назначение &quot;SQL Server&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;5"
+              description="Назначение &quot;SQL Server&quot;"
+              name="presence in zones"
+              version="5">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.String"
+                  description="Имя объекта базы данных для копирования данных."
+                  expressionType="Notify"
+                  name="BulkInsertTableName">[dbo].[presence time]</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, что в ходе операции копирования данных в целевом объекте проверяются все ограничения. Соответствует параметру CHECK_CONSTRAINTS массовой вставки."
+                  name="BulkInsertCheckConstraints">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает номер первой строки для копирования. Соответствует параметру FIRSTROW массовой вставки."
+                  expressionType="Notify"
+                  name="BulkInsertFirstRow">-1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, что любые триггеры вставки, определенные на целевом объекте, будут выполняться в ходе копирования данных. Соответствует параметру FIRE_TRIGGERS массовой вставки."
+                  name="BulkInsertFireTriggers">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, должны ли значения в столбцах идентификаторов копироваться в назначение. Значение false указывает, что значения в столбцах идентификаторов будут созданы автоматически в месте назначения. Соответствует параметру KEEPIDENTITY массовой вставки."
+                  name="BulkInsertKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, будут ли в назначение копироваться значения NULL для столбцов, содержащих их. Значение false показывает, что если столбец имеет значение NULL, то в назначение будет вставлено его значение по умолчанию. Применяется только в случае, если включена быстрая загрузка."
+                  name="BulkInsertKeepNulls">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает номер последней строки для копирования. Соответствует параметру LASTROW массовой вставки."
+                  expressionType="Notify"
+                  name="BulkInsertLastRow">-1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает максимальное число синтаксических ошибок и ошибок компиляции, которые могут произойти до отмены операции копирования данных. Каждая строка, которую не удается скопировать, пропускается и считается за одну ошибку. Соответствует параметру MAXERRORS массовой вставки."
+                  name="BulkInsertMaxErrors">-1</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает порядок сортировки данных для копирования. Соответствует параметру ORDER массовой вставки."
+                  expressionType="Notify"
+                  name="BulkInsertOrder"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, что в течение операции копирования данных применяется блокировка на уровне таблиц. Соответствует параметру TABLOCK массовой вставки."
+                  name="BulkInsertTablock">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Задает интервал времени (в секундах), в течение которого адаптер загрузки данных SQL будет находиться с режиме ожидания перед завершением работы в случае, когда данные для вставки недоступны. Значение времени ожидания 0 означает, что адаптер загрузки данных SQL не будет завершать работу из-за истечения времени ожидания."
+                  expressionType="Notify"
+                  name="Timeout">300</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает на выполнение фиксации в процеcсе вставки данных. Значение 0 указывает, что по окончание вставки данных будет выполнена одна фиксация."
+                  name="MaxInsertCommitSize">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export presence in zones\presence in zones.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.tracker-SSIS]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.tracker-SSIS]"
+                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;]"
+                  hasSideEffects="true"
+                  name="Вход назначения &quot;SQL Server&quot;">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[ControlObject]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ControlObject"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[ControlObject]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[ControlObject]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_East dump zone_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_East dump zone_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[East dump zone]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_East dump zone_PresenceValue]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_Excavator zone_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_Excavator zone_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Excavator zone]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Excavator zone_PresenceValue]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_Grader Sharp turn 01_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_Grader Sharp turn 01_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Grader Sharp turn 01]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Grader Sharp turn 01_PresenceValue]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_Power plant to Truck shop road_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_Power plant to Truck shop road_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Power plant to Truck shop road]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Power plant to Truck shop road_PresenceValue]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_Powerplant_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_Powerplant_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Powerplant]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Powerplant_PresenceValue]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_Severnaya Zona Ex_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_Severnaya Zona Ex_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Severnaya Zona Ex]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Severnaya Zona Ex_PresenceValue]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_Truckshop_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_Truckshop_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Truckshop]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Truckshop_PresenceValue]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_South Shovel zone_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_South Shovel zone_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[South Shovel zone]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_South Shovel zone_PresenceValue]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_Special Eqmt zone_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_Special Eqmt zone_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Special Eqmt zone]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Special Eqmt zone_PresenceValue]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_Warehouse_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_Warehouse_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Warehouse]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Warehouse_PresenceValue]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_West dump zone_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_West dump zone_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[West dump zone]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_West dump zone_PresenceValue]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_West Speedway_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_West Speedway_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[West Speedway]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_West Speedway_PresenceValue]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_Work zone  3_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_Work zone  3_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Work zone  3]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Work zone  3_PresenceValue]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_Work zone 1_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_Work zone 1_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Work zone 1]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Work zone 1_PresenceValue]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_Work zone 2_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_Work zone 2_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Work zone 2]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Work zone 2_PresenceValue]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_Work zone 4_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_Work zone 4_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Work zone 4]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Work zone 4_PresenceValue]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_Workshop_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_Workshop_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Workshop]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Workshop_PresenceValue]" />
+                    <inputColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].Columns[C_Workshop to Power plant road_PresenceValue]"
+                      cachedDataType="decimal"
+                      cachedName="C_Workshop to Power plant road_PresenceValue"
+                      externalMetadataColumnId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Workshop to Power plant road]"
+                      lineageId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию].Columns[C_Workshop to Power plant road_PresenceValue]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[ControlObject]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="ControlObject" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[East dump zone]"
+                      dataType="numeric"
+                      name="East dump zone"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Excavator zone]"
+                      dataType="numeric"
+                      name="Excavator zone"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Grader Sharp turn 01]"
+                      dataType="numeric"
+                      name="Grader Sharp turn 01"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Power plant to Truck shop road]"
+                      dataType="numeric"
+                      name="Power plant to Truck shop road"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Powerplant]"
+                      dataType="numeric"
+                      name="Powerplant"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Severnaya Zona Ex]"
+                      dataType="numeric"
+                      name="Severnaya Zona Ex"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[South Shovel zone]"
+                      dataType="numeric"
+                      name="South Shovel zone"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Special Eqmt zone]"
+                      dataType="numeric"
+                      name="Special Eqmt zone"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Truckshop]"
+                      dataType="numeric"
+                      name="Truckshop"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Warehouse]"
+                      dataType="numeric"
+                      name="Warehouse"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[West dump zone]"
+                      dataType="numeric"
+                      name="West dump zone"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[West Speedway]"
+                      dataType="numeric"
+                      name="West Speedway"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Work zone  3]"
+                      dataType="numeric"
+                      name="Work zone  3"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Work zone 1]"
+                      dataType="numeric"
+                      name="Work zone 1"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Work zone 2]"
+                      dataType="numeric"
+                      name="Work zone 2"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Work zone 4]"
+                      dataType="numeric"
+                      name="Work zone 4"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Workshop]"
+                      dataType="numeric"
+                      name="Workshop"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;].ExternalColumns[Workshop to Power plant road]"
+                      dataType="numeric"
+                      name="Workshop to Power plant road"
+                      precision="28"
+                      scale="3" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Export presence in zones\rest api json"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Включает и выполняет пользовательский код скрипта. Пример: применение бизнес-правила, ограничивающего диапазон допустимых значений в столбце &quot;income&quot;, или суммирование значений в двух столбцах и вычисление среднего значения суммы.Корпорация Майкрософт (Microsoft Corporation). Microsoft SQL Server. Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support8"
+              description="Включает и выполняет пользовательский код скрипта. Пример: применение бизнес-правила, ограничивающего диапазон допустимых значений в столбце &quot;income&quot;, или суммирование значений в двух столбцах и вычисление среднего значения суммы."
+              name="rest api json"
+              version="8">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Хранит исходный код компонента"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="39">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public PivotSourceBuffer PivotSourceBuffer;
+
+    public virtual void FinishOutputs()
+    {
+    }
+
+    private void MarkOutputsFinished()
+    {
+
+        if (null != PivotSourceBuffer)
+        {
+            PivotSourceBuffer.SetEndOfRowset();
+            PivotSourceBuffer = null;
+        }
+
+    }
+
+    public override void PrimeOutput(int Outputs, int[] OutputIDs, PipelineBuffer[] Buffers, OutputNameMap OutputMap)
+    {
+       for(int Idx = 0; Idx < Outputs; Idx++)
+       {
+            if(OutputIDs[Idx] == GetOutputID(OutputMap, @"PivotSource"))
+            {
+                PivotSourceBuffer = new PivotSourceBuffer(Buffers[Idx], GetColumnIndexes(OutputIDs[Idx]), OutputMap);
+            }
+        }
+
+        CreateNewOutputRows();
+
+        FinishOutputs();
+        MarkOutputsFinished();
+
+    }
+
+    public virtual void CreateNewOutputRows()
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+    public DateTime endDate
+    {
+        get
+        {
+            return (DateTime)(ParentComponent.ReadOnlyVariables["endDate"].GetValueWithContext(ScriptComponent.EvaluatorContext));
+        }
+    }
+
+    public String login
+    {
+        get
+        {
+            return (String)(ParentComponent.ReadOnlyVariables["login"].GetValueWithContext(ScriptComponent.EvaluatorContext));
+        }
+    }
+
+    public String password
+    {
+        get
+        {
+            return (String)(ParentComponent.ReadOnlyVariables["password"].GetValueWithContext(ScriptComponent.EvaluatorContext));
+        }
+    }
+
+    public String siteName
+    {
+        get
+        {
+            return (String)(ParentComponent.ReadOnlyVariables["siteName"].GetValueWithContext(ScriptComponent.EvaluatorContext));
+        }
+    }
+
+    public DateTime startDate
+    {
+        get
+        {
+            return (DateTime)(ParentComponent.ReadOnlyVariables["startDate"].GetValueWithContext(ScriptComponent.EvaluatorContext));
+        }
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Data;
+using System.Net;
+using System.Web.Script.Serialization;
+using System.Collections.Generic;
+using Microsoft.SqlServer.Dts.Runtime;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    #region Help:  Using Integration Services variables and parameters
+    /* To use a variable in this script, first ensure that the variable has been added to
+     * either the list contained in the ReadOnlyVariables property or the list contained in
+     * the ReadWriteVariables property of this script component, according to whether or not your
+     * code needs to write into the variable.  To do so, save this script, close this instance of
+     * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
+     * Script Transformation Editor window.
+     * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+     *
+     * Example of reading from a variable or parameter:
+     *  DateTime startTime = Variables.MyStartTime;
+     *
+     * Example of writing to a variable:
+     *  Variables.myStringVariable = "new value";
+     */
+    #endregion
+
+    #region Help:  Using Integration Services Connnection Managers
+    /* Some types of connection managers can be used in this script component.  See the help topic
+     * "Working with Connection Managers Programatically" for details.
+     *
+     * To use a connection manager in this script, first ensure that the connection manager has
+     * been added to either the list of connection managers on the Connection Managers page of the
+     * script component editor.  To add the connection manager, save this script, close this instance of
+     * Visual Studio, and add the Connection Manager to the list.
+     *
+     * If the component needs to hold a connection open while processing rows, override the
+     * AcquireConnections and ReleaseConnections methods.
+     * 
+     * Example of using an ADO.Net connection manager to acquire a SqlConnection:
+     *  object rawConnection = Connections.SalesDB.AcquireConnection(transaction);
+     *  SqlConnection salesDBConn = (SqlConnection)rawConnection;
+     *
+     * Example of using a File connection manager to acquire a file path:
+     *  object rawConnection = Connections.Prices_zip.AcquireConnection(transaction);
+     *  string filePath = (string)rawConnection;
+     *
+     * Example of releasing a connection manager:
+     *  Connections.SalesDB.ReleaseConnection(rawConnection);
+     */
+    #endregion
+
+    #region Help:  Firing Integration Services Events
+    /* This script component can fire events.
+     *
+     * Example of firing an error event:
+     *  ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, out cancel);
+     *
+     * Example of firing an information event:
+     *  ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain);
+     *
+     * Example of firing a warning event:
+     *  ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0);
+     */
+    #endregion
+
+    /// <summary>
+    /// This method is called once, before rows begin to be processed in the data flow.
+    ///
+    /// You can remove this method if you don't need to do anything here.
+    /// </summary>
+    public override void PreExecute()
+    {
+        base.PreExecute();
+        /*
+         * Add your code here
+         */
+    }
+
+    /// <summary>
+    /// This method is called after all the rows have passed through this component.
+    ///
+    /// You can delete this method if you don't need to do anything here.
+    /// </summary>
+    public override void PostExecute()
+    {
+        base.PostExecute();
+        /*
+         * Add your code here
+         */
+    }
+
+    public override void CreateNewOutputRows()
+    {
+        string hostUrl = "54.158.76.30:8080";
+
+        JavaScriptSerializer serialize = new JavaScriptSerializer();
+
+        string x_session_id;
+
+        using (WebClientEx client = new WebClientEx(new CookieContainer()))
+        {
+            client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
+            String jsonSession = client.UploadString(new Uri("http://" + hostUrl + "/api/v1/signin"), "POST",
+                "{\"login\":\"" + this.Variables.login + "\",\"password\":\"" + this.Variables.password + "\"}");
+            Session session = (Session)serialize.Deserialize(jsonSession, typeof(Session));
+            x_session_id = session.id;
+        }
+
+        String jsonSites = "";
+
+        using (WebClient client = new WebClient())
+        {
+            client.Headers.Add("x-session-id", x_session_id);
+            jsonSites = client.DownloadString("http://" + hostUrl + "/api/v1/sites");
+        }
+
+        Sites sites = (Sites)serialize.Deserialize(jsonSites, typeof(Sites));
+        String siteId = "";
+        for (int i = 0; i < sites.total; i++)
+        {
+            if (this.Variables.siteName.Equals(sites.data[i].name))
+            {
+                siteId = sites.data[i].id;
+            }
+        }
+
+        String jsonControlObjects = "";
+
+        using (WebClient client = new WebClient())
+        {
+            client.Headers.Add("x-session-id", x_session_id);
+            jsonControlObjects = client.DownloadString("http://" + hostUrl + "/api/v1/sites/" + siteId + "/control_objects");
+        }
+
+        ControlObjects controlObjects = (ControlObjects)serialize.Deserialize(jsonControlObjects, typeof(ControlObjects));
+
+        String jsonZones = "";
+
+        using (WebClient client = new WebClient())
+        {
+            client.Headers.Add("x-session-id", x_session_id);
+            jsonZones = client.DownloadString("http://" + hostUrl + "/api/v1/sites/" + siteId + "/zones");
+        }
+
+        Zones zones = (Zones)serialize.Deserialize(jsonZones, typeof(Zones));
+
+        using (WebClient client = new WebClient())
+        {
+            client.Headers.Add("x-session-id", x_session_id);
+            for (int i = 0; i < controlObjects.total; i++)
+            {
+                double presenceSecondInAllZones = 0;
+
+                for (int j = 0; j < zones.total; j++)
+                {
+                    String startMonth = this.Variables.startDate.Month < 10 ?
+                        "0" + this.Variables.startDate.Month : "" + this.Variables.startDate.Month,
+                        startDay = this.Variables.startDate.Day < 10 ?
+                        "0" + this.Variables.startDate.Day : "" + this.Variables.startDate.Day,
+                        startHour = this.Variables.startDate.Hour < 10 ?
+                        "0" + this.Variables.startDate.Hour : "" + this.Variables.startDate.Hour,
+                        startMinute = this.Variables.startDate.Minute < 10 ?
+                        "0" + this.Variables.startDate.Minute : "" + this.Variables.startDate.Minute,
+                        endMonth = this.Variables.endDate.Month < 10 ?
+                        "0" + this.Variables.endDate.Month : "" + this.Variables.endDate.Month,
+                        endDay = this.Variables.endDate.Day < 10 ?
+                        "0" + this.Variables.endDate.Day : "" + this.Variables.endDate.Day,
+                        endHour = this.Variables.endDate.Hour < 10 ?
+                        "0" + this.Variables.endDate.Hour : "" + this.Variables.endDate.Hour,
+                        endMinute = this.Variables.endDate.Minute < 10 ?
+                        "0" + this.Variables.endDate.Minute : "" + this.Variables.endDate.Minute;
+
+                    String requestStatisticsUrl = "http://" + hostUrl + "/api/v1/statistics/" + siteId +
+                        "/presence." + controlObjects.data[i].id + "." + zones.data[j].id + "?from_time=" +
+                        this.Variables.startDate.Year + "-" + startMonth + "-"
+                        + startDay + "T" + startHour + ":" + startMinute + ":00.000Z&to_time=" + this.Variables.endDate.Year + "-" +
+                        endMonth + "-" + endDay + "T"
+                        + endHour + ":" + endMinute + ":00.000Z&type=4";
+
+                    String jsonStatistics = client.DownloadString(requestStatisticsUrl);
+
+                    Statistics statistics = (Statistics)serialize.Deserialize(jsonStatistics, typeof(Statistics));
+
+                    double presenceSeconds = 0;
+                    for (int k = 0; k < statistics.values.Count; k++)
+                    {
+                        presenceSeconds += statistics.values[k].value;
+                    }
+
+                    presenceSecondInAllZones += presenceSeconds;
+
+                    PivotSourceBuffer.AddRow();
+                    PivotSourceBuffer.ControlObject = controlObjects.data[i].name;
+                    PivotSourceBuffer.Zone = zones.data[j].name;
+                    PivotSourceBuffer.PresenceValue = Convert.ToDecimal(presenceSeconds / 3600); //store value in hours
+                }
+            }
+        }
+
+        using (WebClient client = new WebClient())
+        {
+            client.Headers.Add("x-session-id", x_session_id);
+            jsonSites = client.DownloadString("http://" + hostUrl + "/api/v1/signout");
+        }
+    }
+
+    public static string DownloadJson(string downloadURL)
+    {
+        using (WebClient client = new WebClient())
+        {
+            return client.DownloadString(downloadURL);
+        }
+    }
+}
+
+#region extended web client
+public class WebClientEx : WebClient
+{
+    public WebClientEx(CookieContainer container)
+    {
+        this.container = container;
+    }
+
+    public CookieContainer CookieContainer
+    {
+        get { return container; }
+        set { container = value; }
+    }
+
+    private CookieContainer container = new CookieContainer();
+
+    protected override WebRequest GetWebRequest(Uri address)
+    {
+        WebRequest r = base.GetWebRequest(address);
+        var request = r as HttpWebRequest;
+        if (request != null)
+        {
+            request.CookieContainer = container;
+        }
+        return r;
+    }
+
+    protected override WebResponse GetWebResponse(WebRequest request, IAsyncResult result)
+    {
+        WebResponse response = base.GetWebResponse(request, result);
+        ReadCookies(response);
+        return response;
+    }
+
+    protected override WebResponse GetWebResponse(WebRequest request)
+    {
+        WebResponse response = base.GetWebResponse(request);
+        ReadCookies(response);
+        return response;
+    }
+
+    private void ReadCookies(WebResponse r)
+    {
+        var response = r as HttpWebResponse;
+        if (response != null)
+        {
+            CookieCollection cookies = response.Cookies;
+            container.Add(cookies);
+        }
+    }
+}
+#endregion
+
+#region /api/v1/signin classes
+public class Settings
+{
+    public string incident_rules_fcd80f144e48437ba0dbc6208e8ded43 { get; set; }
+    public string incident_rules_c7ebb6b43f52406bb349826a646fa65f { get; set; }
+    public string incident_rules_e2fe88944e2b4ba7b1f758a75c60ca22 { get; set; }
+    public string incident_rules_8b22a854f99a4c01be0664deb5dda0c7 { get; set; }
+    public string incident_rules_959431b955124497a6c9670ec5cfcdb5 { get; set; }
+    public string incident_rules_0391b9ab18af4eb3bd86cc762060ce53 { get; set; }
+    public string incident_rules_b2230499789e413695eb4c2c18e13795 { get; set; }
+    public string incident_rules_1919ce153a1140828cd11454a3dabcb0 { get; set; }
+    public string incident_rules_9f7b1f2a91c041f5b1809a9649ae9875 { get; set; }
+    public string incident_rules_248f8c69f8fd465484632fa6b1ba1ad2 { get; set; }
+    public string incident_rules_68c480f1d02945ddbace05229636265f { get; set; }
+    public string incident_rules_cea7e02a8c8d4669af8b5a057dcc2ef7 { get; set; }
+    public string incident_rules_7a41e13d0329461b9b8fa9c3aad82582 { get; set; }
+    public string incident_rules_097d1b35bdae45848628552f4fabf064 { get; set; }
+    public string incident_rules_b7b4a201d5664487903d4ceffb1e93f9 { get; set; }
+    public string incident_rules_76b28e60bc4940dca776d693bfc482c6 { get; set; }
+    public string incident_rules_4b856288fb984a25891074863ea573fc { get; set; }
+    public string incident_rules_a8ac737b59fc403a84a2631abff2a426 { get; set; }
+    public string incident_rules_a9f879abdda74aeeb93cb23955ebada9 { get; set; }
+    public string incident_rules_2ed70446b4f545599a3d079773a7d70d { get; set; }
+    public string incident_rules_3eaaa0ae3ed445e68db8b6a72e08c70f { get; set; }
+    public string incident_rules_bbfff544a8514d2f93a018a8854f92ed { get; set; }
+    public string incident_rules_df284ebb11bb4aad91b8c78424fbc2ec { get; set; }
+    public string incident_rules_d708aeab23f24113b1eba347b333fccb { get; set; }
+    public string incident_rules_85c721c5e7e84b93bafb3fce38b815e3 { get; set; }
+    public string incident_rules_665f50389a2f473e9f2009be394b8e18 { get; set; }
+    public string incident_rules_58feba1f3e14484884b5ff6ac4ded6d5 { get; set; }
+    public string incident_rules_aa8fe967a7c74df7b12d2f68779ac712 { get; set; }
+    public string incident_rules_db9d9dece8794a9b897d80618e535151 { get; set; }
+    public string incident_rules_0a78ed88a395466192c91ab456340eeb { get; set; }
+    public string site_id { get; set; }
+}
+
+public class SessionBoundaries
+{
+    public List<List<double>> coordinates { get; set; }
+    public string type { get; set; }
+}
+
+public class SessionGeometry
+{
+    public List<List<List<double>>> coordinates { get; set; }
+    public string type { get; set; }
+}
+
+public class SessionCenter
+{
+    public List<double> coordinates { get; set; }
+    public string type { get; set; }
+}
+
+public class SessionSite
+{
+    public string id { get; set; }
+    public string language { get; set; }
+    public SessionBoundaries boundaries { get; set; }
+    public SessionGeometry geometry { get; set; }
+    public int offline_timeout { get; set; }
+    public int offsite_int { get; set; }
+    public int inactive_int { get; set; }
+    public int active_int { get; set; }
+    public string code { get; set; }
+    public int version { get; set; }
+    public bool active { get; set; }
+    public DateTime create_time { get; set; }
+    public double radius { get; set; }
+    public SessionCenter center { get; set; }
+    public string name { get; set; }
+}
+
+public class User
+{
+    public Settings settings { get; set; }
+    public List<SessionSite> sites { get; set; }
+    public List<string> roles { get; set; }
+    public DateTime create_time { get; set; }
+    public string login { get; set; }
+    public string name { get; set; }
+    public string id { get; set; }
+}
+
+public class Session
+{
+    public string user_id { get; set; }
+    public string user_name { get; set; }
+    public string address { get; set; }
+    public string client { get; set; }
+    public User user { get; set; }
+    public object data { get; set; }
+    public DateTime request_time { get; set; }
+    public DateTime open_time { get; set; }
+    public bool active { get; set; }
+    public string id { get; set; }
+}
+#endregion
+
+#region /api/v1/sites classes
+public class Center
+{
+    public string type { get; set; }
+    public List<double> coordinates { get; set; }
+}
+
+public class Geometry
+{
+    public string type { get; set; }
+    public List<List<List<double>>> coordinates { get; set; }
+}
+
+public class Boundaries
+{
+    public string type { get; set; }
+    public List<List<double>> coordinates { get; set; }
+}
+
+public class Site
+{
+    public string name { get; set; }
+    public Center center { get; set; }
+    public double radius { get; set; }
+    public DateTime create_time { get; set; }
+    public bool active { get; set; }
+    public int version { get; set; }
+    public string code { get; set; }
+    public int active_int { get; set; }
+    public int inactive_int { get; set; }
+    public int offsite_int { get; set; }
+    public int offline_timeout { get; set; }
+    public Geometry geometry { get; set; }
+    public Boundaries boundaries { get; set; }
+    public string language { get; set; }
+    public string id { get; set; }
+    public string timezone { get; set; }
+}
+
+public class Sites
+{
+    public int total { get; set; }
+    public List<Site> data { get; set; }
+}
+#endregion
+
+#region /api/v1/control_objects classes
+public class ControlObject
+{
+    public string name { get; set; }
+    public string site_id { get; set; }
+    public string type { get; set; }
+    public string category { get; set; }
+    public string description { get; set; }
+    public string device_id { get; set; }
+    public List<string> group_ids { get; set; }
+    public string id { get; set; }
+}
+
+public class ControlObjects
+{
+    public int total { get; set; }
+    public List<ControlObject> data { get; set; }
+}
+#endregion
+
+#region /api/v1/zones classes
+public class ZoneGeometry
+{
+    public string type { get; set; }
+    public List<List<object>> coordinates { get; set; }
+}
+
+public class ZoneCenter
+{
+    public string type { get; set; }
+    public List<double> coordinates { get; set; }
+}
+
+public class ZoneBoundaries
+{
+    public string type { get; set; }
+    public List<List<List<double>>> coordinates { get; set; }
+}
+
+public class Zone
+{
+    public string name { get; set; }
+    public string site_id { get; set; }
+    public string type { get; set; }
+    public double distance { get; set; }
+    public ZoneGeometry geometry { get; set; }
+    public List<object> exclude_group_ids { get; set; }
+    public List<object> exclude_object_ids { get; set; }
+    public List<object> include_group_ids { get; set; }
+    public List<object> include_object_ids { get; set; }
+    public string id { get; set; }
+    public ZoneCenter center { get; set; }
+    public ZoneBoundaries boundaries { get; set; }
+}
+
+public class Zones
+{
+    public int total { get; set; }
+    public List<Zone> data { get; set; }
+}
+#endregion
+
+#region /api/v1/statistics classes
+public class StatValue
+{
+    public int year { get; set; }
+    public int month { get; set; }
+    public int day { get; set; }
+    public int hour { get; set; }
+    public double value { get; set; }
+}
+
+public class Statistics
+{
+    public string group { get; set; }
+    public string name { get; set; }
+    public int type { get; set; }
+    public List<StatValue> values { get; set; }
+}
+#endregion]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class PivotSourceBuffer: ScriptBuffer
+
+{
+    public PivotSourceBuffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public Decimal PresenceValue
+    {
+        set
+        {
+            this[0] = value;
+        }
+    }
+    public bool PresenceValue_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(0);
+            }
+            else
+            {
+                throw new InvalidOperationException("Свойство IsNull не может иметь значение FALSE. Присвойте столбцу какое-либо значение.");
+            }
+        }
+    }
+
+    public String Zone
+    {
+        set
+        {
+            this[1] = value;
+        }
+    }
+    public bool Zone_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(1);
+            }
+            else
+            {
+                throw new InvalidOperationException("Свойство IsNull не может иметь значение FALSE. Присвойте столбцу какое-либо значение.");
+            }
+        }
+    }
+
+    public String ControlObject
+    {
+        set
+        {
+            this[2] = value;
+        }
+    }
+    public bool ControlObject_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(2);
+            }
+            else
+            {
+                throw new InvalidOperationException("Свойство IsNull не может иметь значение FALSE. Присвойте столбцу какое-либо значение.");
+            }
+        }
+    }
+
+    new public void AddRow()
+    {
+        base.AddRow();
+    }
+
+    new public void SetEndOfRowset()
+    {
+        base.SetEndOfRowset();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_4fa5cb3a1314490a928b49918e52151f.Properties.Settings.get_Default():SC_4fa5cb3a1314490a928b49918e52151f.Properties.Sett" +
+    "ings")]
+
+namespace SC_4fa5cb3a1314490a928b49918e52151f.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_4fa5cb3a1314490a928b49918e52151f.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{42781F36-18B3-4742-97C5-05F164BEE040}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_4fa5cb3a1314490a928b49918e52151f</RootNamespace>
+    <AssemblyName>SC_4fa5cb3a1314490a928b49918e52151f</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Sites.cs" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" />
+        <Host Name="ScriptComponent" IconIndex="0" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC110</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:CodeName>SC_4fa5cb3a1314490a928b49918e52151f</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>SC_4fa5cb3a1314490a928b49918e52151f</msb:DisplayName>
+		<msb:ProjectId>{740DA95C-5BEA-4FB0-864E-7586C0D50F2E}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="SC_4fa5cb3a1314490a928b49918e52151f.csproj"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="ComponentWrapper.cs"/>
+		<msb:File Include="app.config"/>
+		<msb:File Include="Sites.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_4fa5cb3a1314490a928b49918e52151f")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_4fa5cb3a1314490a928b49918e52151f")]
+[assembly: AssemblyCopyright("Copyright @  2017")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_4fa5cb3a1314490a928b49918e52151f.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_4fa5cb3a1314490a928b49918e52151f.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_4fa5cb3a1314490a928b49918e52151f.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_4fa5cb3a1314490a928b49918e52151f.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_4fa5cb3a1314490a928b49918e52151f.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[About.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace SC_4fa5cb3a1314490a928b49918e52151f
+{
+    public class _Properties
+    {
+    }
+
+    public class Server
+    {
+        public string name { get; set; }
+        public string description { get; set; }
+        public _Properties properties { get; set; }
+        public int uptime { get; set; }
+        public DateTime start_time { get; set; }
+        public DateTime current_time { get; set; }
+        public string protocol { get; set; }
+        public string host { get; set; }
+        public List<string> addresses { get; set; }
+        public int port { get; set; }
+        public string url { get; set; }
+    }
+
+    public class Client
+    {
+        public string address { get; set; }
+        public string client { get; set; }
+        public string platform { get; set; }
+    }
+
+    public class About
+    {
+        public Server server { get; set; }
+        public Client client { get; set; }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[app.config]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+</configuration>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Sites.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace SC_4fa5cb3a1314490a928b49918e52151f
+{
+    public class Center
+    {
+        public string type { get; set; }
+        public List<double> coordinates { get; set; }
+    }
+
+    public class Geometry
+    {
+        public string type { get; set; }
+        public List<List<List<double>>> coordinates { get; set; }
+    }
+
+    public class Boundaries
+    {
+        public string type { get; set; }
+        public List<List<double>> coordinates { get; set; }
+    }
+
+    public class Datum
+    {
+        public string name { get; set; }
+        public Center center { get; set; }
+        public double radius { get; set; }
+        public DateTime create_time { get; set; }
+        public bool active { get; set; }
+        public int version { get; set; }
+        public string code { get; set; }
+        public int active_int { get; set; }
+        public int inactive_int { get; set; }
+        public int offsite_int { get; set; }
+        public int offline_timeout { get; set; }
+        public Geometry geometry { get; set; }
+        public Boundaries boundaries { get; set; }
+        public string language { get; set; }
+        public string id { get; set; }
+        public string timezone { get; set; }
+    }
+
+    public class Sites
+    {
+        public int total { get; set; }
+        public List<Datum> data { get; set; }
+    }
+}
+]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Хранит представление компонента в двоичном коде"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_4fa5cb3a1314490a928b49918e52151f.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[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
+EQ8sBxEPbx8AAArcBxEO0BwAAAIoHQAACm8eAAAKdBwAAAITEHMgAAAKExEREW8XAAAKctMAAHAI
+byEAAAoWExI4MQUAACMAAAAAAAAAABMTFhMUOAoFAAACexoAAARvdAEABhMmEiYoJQAACh8KMiAC
+exoAAARvdAEABhMnEicoJQAACowoAAABKCYAAAorI3JXAQBwAnsaAAAEb3QBAAYTKBIoKCUAAAqM
+KAAAASgnAAAKExUCexoAAARvdAEABhMpEikoKAAACh8KMiACexoAAARvdAEABhMqEiooKAAACowo
+AAABKCYAAAorI3JXAQBwAnsaAAAEb3QBAAYTKxIrKCgAAAqMKAAAASgnAAAKExYCexoAAARvdAEA
+BhMsEiwoKQAACh8KMiACexoAAARvdAEABhMtEi0oKQAACowoAAABKCYAAAorI3JXAQBwAnsaAAAE
+b3QBAAYTLhIuKCkAAAqMKAAAASgnAAAKExcCexoAAARvdAEABhMvEi8oKgAACh8KMiACexoAAARv
+dAEABhMwEjAoKgAACowoAAABKCYAAAorI3JXAQBwAnsaAAAEb3QBAAYTMRIxKCoAAAqMKAAAASgn
+AAAKExgCexoAAARvcAEABhMyEjIoJQAACh8KMiACexoAAARvcAEABhMzEjMoJQAACowoAAABKCYA
+AAorI3JXAQBwAnsaAAAEb3ABAAYTNBI0KCUAAAqMKAAAASgnAAAKExkCexoAAARvcAEABhM1EjUo
+KAAACh8KMiACexoAAARvcAEABhM2EjYoKAAACowoAAABKCYAAAorI3JXAQBwAnsaAAAEb3ABAAYT
+NxI3KCgAAAqMKAAAASgnAAAKExoCexoAAARvcAEABhM4EjgoKQAACh8KMiACexoAAARvcAEABhM5
+EjkoKQAACowoAAABKCYAAAorI3JXAQBwAnsaAAAEb3ABAAYTOhI6KCkAAAqMKAAAASgnAAAKExsC
+exoAAARvcAEABhM7EjsoKgAACh8KMiACexoAAARvcAEABhM8EjwoKgAACowoAAABKCYAAAorI3JX
+AQBwAnsaAAAEb3ABAAYTJhImKCoAAAqMKAAAASgnAAAKExwfHY0BAAABEz0RPRZyXwAAcKIRPRcG
+ohE9GHJbAQBwohE9GREJohE9GnKDAQBwohE9GxENbyABAAYREm8rAAAKbxsBAAaiET0ccpkBAHCi
+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
+KiICA31MAAAEKh4Ce00AAAQqIgIDfU0AAAQqHgJ7TgAABCoiAgN9TgAABCoeAntPAAAEKiICA31P
+AAAEKh4Ce1AAAAQqIgIDfVAAAAQqHgIoDgAACioeAntRAAAEKiICA31RAAAEKh4Ce1IAAAQqIgID
+fVIAAAQqHgJ7UwAABCoiAgN9UwAABCoeAntUAAAEKiICA31UAAAEKh4Ce1UAAAQqIgIDfVUAAAQq
+HgJ7VgAABCoiAgN9VgAABCoeAntXAAAEKiICA31XAAAEKh4CKA4AAAoqHgJ7WAAABCoiAgN9WAAA
+BCoeAntZAAAEKiICA31ZAAAEKh4Ce1oAAAQqIgIDfVoAAAQqHgJ7WwAABCoiAgN9WwAABCoeAntc
+AAAEKiICA31cAAAEKh4Ce10AAAQqIgIDfV0AAAQqHgJ7XgAABCoiAgN9XgAABCoeAntfAAAEKiIC
+A31fAAAEKh4Ce2AAAAQqIgIDfWAAAAQqHgJ7YQAABCoiAgN9YQAABCoeAigOAAAKKh4Ce2IAAAQq
+IgIDfWIAAAQqHgJ7YwAABCoiAgN9YwAABCoeAigOAAAKKh4Ce2QAAAQqIgIDfWQAAAQqHgJ7ZQAA
+BCoiAgN9ZQAABCoeAigOAAAKKh4Ce2YAAAQqIgIDfWYAAAQqHgJ7ZwAABCoiAgN9ZwAABCoeAigO
+AAAKKh4Ce2gAAAQqIgIDfWgAAAQqHgJ7aQAABCoiAgN9aQAABCoeAntqAAAEKiICA31qAAAEKh4C
+e2sAAAQqIgIDfWsAAAQqHgJ7bAAABCoiAgN9bAAABCoeAnttAAAEKiICA31tAAAEKh4Ce24AAAQq
+IgIDfW4AAAQqHgJ7bwAABCoiAgN9bwAABCoeAntwAAAEKiICA31wAAAEKh4Ce3EAAAQqIgIDfXEA
+AAQqHgJ7cgAABCoiAgN9cgAABCoeAntzAAAEKiICA31zAAAEKh4Ce3QAAAQqIgIDfXQAAAQqHgJ7
+dQAABCoiAgN9dQAABCoeAnt2AAAEKiICA312AAAEKh4Ce3cAAAQqIgIDfXcAAAQqHgIoDgAACioe
+Ant4AAAEKiICA314AAAEKh4Ce3kAAAQqIgIDfXkAAAQqHgIoDgAACioeAnt6AAAEKiICA316AAAE
+Kh4Ce3sAAAQqIgIDfXsAAAQqHgJ7fAAABCoiAgN9fAAABCoeAnt9AAAEKiICA319AAAEKh4Ce34A
+AAQqIgIDfX4AAAQqHgJ7fwAABCoiAgN9fwAABCoeAnuAAAAEKiICA32AAAAEKh4Ce4EAAAQqIgID
+fYEAAAQqHgIoDgAACioeAnuCAAAEKiICA32CAAAEKh4Ce4MAAAQqIgIDfYMAAAQqHgIoDgAACioe
+AnuEAAAEKiICA32EAAAEKh4Ce4UAAAQqIgIDfYUAAAQqHgIoDgAACioeAnuGAAAEKiICA32GAAAE
+Kh4Ce4cAAAQqIgIDfYcAAAQqHgIoDgAACioeAnuIAAAEKiICA32IAAAEKh4Ce4kAAAQqIgIDfYkA
+AAQqHgIoDgAACioeAnuKAAAEKiICA32KAAAEKh4Ce4sAAAQqIgIDfYsAAAQqHgJ7jAAABCoiAgN9
+jAAABCoeAnuNAAAEKiICA32NAAAEKh4Ce44AAAQqIgIDfY4AAAQqHgJ7jwAABCoiAgN9jwAABCoe
+AnuQAAAEKiICA32QAAAEKh4Ce5EAAAQqIgIDfZEAAAQqHgJ7kgAABCoiAgN9kgAABCoeAnuTAAAE
+KiICA32TAAAEKh4Ce5QAAAQqIgIDfZQAAAQqHgJ7lQAABCoiAgN9lQAABCoeAigOAAAKKh4Ce5YA
+AAQqIgIDfZYAAAQqHgJ7lwAABCoiAgN9lwAABCoeAigOAAAKKh4Ce5gAAAQqIgIDfZgAAAQqHgJ7
+mQAABCoiAgN9mQAABCoeAnuaAAAEKiICA32aAAAEKh4Ce5sAAAQqIgIDfZsAAAQqHgJ7nAAABCoi
+AgN9nAAABCoeAigOAAAKKh4Ce50AAAQqIgIDfZ0AAAQqHgJ7ngAABCoiAgN9ngAABCoeAnufAAAE
+KiICA32fAAAEKh4Ce6AAAAQqIgIDfaAAAAQqHgIoDgAACioqAgMEBSg4AAAKKjoCFgOMDwAAASg5
+AAAKKloDLAgCFig6AAAKKnIlAgBwczsAAAp6JgIXAyg5AAAKKloDLAgCFyg6AAAKKnIlAgBwczsA
+AAp6JgIYAyg5AAAKKloDLAgCGCg6AAAKKnIlAgBwczsAAAp6HgIoPAAACioeAig9AAAKKh4CKD4A
+AAoqOgIoDgAACgIDfaEAAAQqOgIoDgAACgIDfaIAAAQqlgJ7ogAABG8/AAAKctICAHBvQAAACihB
+AAAKb0IAAAqlBwAAASqWAnuiAAAEbz8AAApy4gIAcG9AAAAKKEEAAApvQgAACnQjAAABKpYCe6IA
+AARvPwAACnLuAgBwb0AAAAooQQAACm9CAAAKdCMAAAEqlgJ7ogAABG8/AAAKcgADAHBvQAAACihB
+AAAKb0IAAAp0IwAAASqWAnuiAAAEbz8AAApyEgMAcG9AAAAKKEEAAApvQgAACqUHAAABKh4CKA4A
+AAoqAAAAEzACAC0AAAAHAAARfqMAAAQtIHImAwBw0CIAAAIoHQAACm9EAAAKc0UAAAoKBoCjAAAE
+fqMAAAQqGn6kAAAEKh4CgKQAAAQqGn6lAAAEKi5zegEABoClAAAEKh4CKEcAAAoqAAAAAAC0AAAA
+zsrvvgEAAACRAAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBW
+ZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYx
+OTM0ZTA4OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBB
+RFBBRFC0AAAAQlNKQgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAAPDoAACN+AACoOgAA
+qDAAACNTdHJpbmdzAAAAAFBrAACYAwAAI1VTAOhuAAAQAAAAI0dVSUQAAAD4bgAAOAYAACNCbG9i
+AAAAAAAAAAIAAAFXFaIJCQEAAAD6JTMAFgAAAQAAADUAAAAjAAAApQAAAHsBAAC0AAAARwAAAOMB
+AAAHAAAAHwAAAKsAAABJAQAABAAAAAEAAAAGAAAAAQAAAAAACgABAAAAAAAGAM4BxwEKABMC8gEO
+AC4CIwIKADgC8gEOAFoCRQIGAJ8ChAIGAE4DxwESAIoH8gEKAJkH8gEOAOsHIwIOAC0IIwIOADgI
+xwEOAEoIIwIGAFYIxwEGALQoxwEGAAoq+SkGADsqJioGAC8rFSsGAForSCsGAHErSCsGAI4rSCsG
+AK0rSCsGAMYrSCsGAN8rSCsGAPorSCsGABUsSCsGAC4sSCsGAGcsRywGAIcsRywGAKUsRywKAN0s
+8gEWADotGi0OAE8tIwIOAG8tIwIGAIUtxwEGAKAtxwEGAKUtxwEGANUtxwEOAAgu6S0GAEUuxwEG
+AHouxwEOAIwuIwIOAJsuIwIOAKsuIwIGANkuxwEaAD4vFi8aAGUvFi8LAHUvAAAaAKUvFi8GAOQv
+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
+pgDDNQAAAACGCBkDFwCmAMw1AAAAAIYIcgLfAKcA1DUAAAAAhgh7AuMApwDdNQAAAACGCGIolwOo
+AOU1AAAAAIYIbSigA6gA7jUAAAAAhhjGAi0AqQD2NQAAAACGGMYCuwOpAAE2AAAAAIYIvCjFA6wA
+EDYAAAAAhgjOKNoArQAnNgAAAACGCOcoFwCuADE2AAAAAIYI8CjaAK8ASDYAAAAAhggAKRcAsABS
+NgAAAACGCBIp2gCxAGk2AAAAAIYAKyktALIAcTYAAAAAhgAyKS0AsgB5NgAAAACGAEEp1gCyAIE2
+AAAAAIYYxgLUA7IAkDYAAAAAhhjGAtQDswCfNgAAAACGCKEpywC0AMU2AAAAAIYIZyITALQA6zYA
+AAAAhgitKRMAtAARNwAAAACGCLopEwC0ADc3AAAAAIYIxynLALQAXTcAAAAAgxjGAi0AtABoNwAA
+AACTCFcq4gO0AKE3AAAAAJMIayrnA7QAqDcAAAAAkwh3KuwDtACwNwAAAACWCJsqAQS1AMM3AAAA
+AIYYxgItALUAtzcAAAAAkRhbMH4FtQAAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEA
+SCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgA
+AAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEA
+ryoAAAIAtyoAAAMAwSoAAAQAySoAAAEA0yoAAAEAIwgAAAEASCgAAAEAbSQAAAEA3yoAAAIA5yoA
+AAEA3yoAAAEA7ioAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEA
+SCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgA
+AAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEA
+SCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgA
+AAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEA
+SCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgA
+AAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEA
+SCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgA
+AAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEA
+SCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgA
+AAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEA
+SCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgA
+AAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEA
+SCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgA
+AAEASCgAAAEA8CoAAAIA9yoAAAMAySoAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEASCgAAAEA
+SCgAAAEACysAAAEACysAAAEASCiRAMYCFwCZAMYCFwChAMYCFwCpAMYCFwCxAMYCFwC5AMYCFwDB
+AMYCFwDJAMYCFwDRAMYCFwDZAMYCFwDhAMYC4wDpAMYCLQDxAMYCLQAJAMYCLQARAMYCLQARAMAs
+EgQRAMwsGQT5AMYCLQARAMcHLQARANIHLQABAcYCLQBRAMYCLQAZAGMtLAQJAYEtMgQZAYwtOgRh
+AMYCFwAZAYwtQQQZAJMtRwQhAbctTwQBAcktWAQxAeEtLQAZAMYCLQA5AYEtYAQZABwuZgQMACsu
+cgQZATQueAQ5ADsu3wAZAYwtfQQZAYwtggQ5AEsu3wA5AFMu3wA5AFwu3wAUACsucgQcACsucgQ5
+AGcu3wAZAYwtlgQkACsucgQkAHAu3wBJAYIuowQZADwIiQFRAQ8IegEZAGMIkAEZAGMImQFZAbwu
+JQVRAIEtKwUhAMYCuwMhAMguOwUhANEu4wBpAcYCFwAhACspLQAhADIpLQAhAEEp1gARAE8vQQVx
+ASsuRwURAJAvTgV5Ab0vVAWRAcYCLQAhAQowWwWBAMYCYQWhAcYCbgUpAMYCLQAgAGsADQQhAGsA
+DQQuAAsAggUuACMA8wUuAGMAGQYuABMAygUuABsA8wUuACsA8wUuADMAygUuADsA+QUuAEMA8wUu
+AFsAEAZAAGsADQRBAGsADQRgAGsADQRhAGsADQSAAGsADQSBAGsADQShAGsADQTAAGsADQTBAGsA
+DQTgAGsADQThAGsADQQAAWsADQQBAWsADQQDAZMADQQgAWsADQQhAWsADQRBAWsADQRgAWsADQRh
+AWsADQSAAWsADQSBAWsADQSgAWsADQShAWsADQTAAWsADQTBAWsADQThAWsADQQAAmsADQQBAmsA
+DQQgAmsADQQhAmsADQRAAmsADQRBAmsADQRgAmsADQRhAmsADQSAAmsADQSBAmsADQSgAmsADQSh
+AmsADQTAAmsADQTBAmsADQTgAmsADQThAmsADQQAA2sADQQBA2sADQQgA2sADQRAA2sADQRgA2sA
+DQSAA2sADQSgA2sADQShA2sADQTAA2sADQTBA2sADQTgA2sADQThA2sADQQABGsADQQBBGsADQQg
+BGsADQQhBGsADQRABGsADQRBBGsADQRDBBsCDQRgBGsADQRhBGsADQSABGsADQSBBGsADQSgBGsA
+DQShBGsADQTABGsADQTBBGsADQTgBGsADQThBGsADQQABWsADQQBBWsADQQgBWsADQQhBWsADQRA
+BWsADQRBBWsADQRgBWsADQRhBWsADQSABWsADQSBBWsADQSgBWsADQShBWsADQTABWsADQTBBWsA
+DQTgBWsADQThBWsADQQBBmsADQQgBmsADQQhBmsADQRABmsADQRBBmsADQRgBmsADQRhBmsADQSA
+BmsADQSBBmsADQShBmsADQTBBmsADQThBmsADQQBB2sADQQhB2sADQRBB2sADQRhB2sADQSBB2sA
+DQShB2sADQTBB2sADQThB2sADQQBCGsADQQhCGsADQRBCGsADQRhCGsADQSBCGsADQShCGsADQTB
+CGsADQTgCGsADQThCGsADQQACWsADQQBCWsADQQgCWsADQQhCWsADQRACWsADQRBCWsADQRgCWsA
+DQRhCWsADQSACWsADQSBCWsADQSgCWsADQShCWsADQTACWsADQTBCWsADQTgCWsADQThCWsADQQA
+CmsADQQBCmsADQQgCmsADQQhCmsADQRACmsADQRBCmsADQRgCmsADQRhCmsADQSACmsADQSBCmsA
+DQSgCmsADQShCmsADQTACmsADQTBCmsADQTgCmsADQThCmsADQQAC2sADQQBC2sADQQgC2sADQQh
+C2sADQRAC2sADQRBC2sADQRgC2sADQRhC2sADQSAC2sADQSBC2sADQSgC2sADQShC2sADQTAC2sA
+DQTBC2sADQTgC2sADQThC2sADQQADGsADQQBDGsADQQgDGsADQQhDGsADQRADGsADQRBDGsADQRg
+DGsADQRhDGsADQSADGsADQSBDGsADQSgDGsADQShDGsADQTADGsADQTBDGsADQTgDGsADQThDGsA
+DQQADWsADQQBDWsADQQgDWsADQQhDWsADQRADWsADQRBDWsADQRgDWsADQRhDWsADQSADWsADQSB
+DWsADQSgDWsADQShDWsADQTADWsADQTBDWsADQTgDWsADQThDWsADQQADmsADQQBDmsADQQgDmsA
+DQQhDmsADQRADmsADQRBDmsADQRgDmsADQRhDmsADQSADmsADQSBDmsADQSgDmsADQShDmsADQTA
+DmsADQTBDmsADQTgDmsADQThDmsADQQAD2sADQQBD2sADQQgD2sADQQhD2sADQRAD2sADQRBD2sA
+DQRgD2sADQRhD2sADQSAD2sADQSBD2sADQSgD2sADQShD2sADQTAD2sADQTBD2sADQTgD2sADQTh
+D2sADQQAEGsADQQBEGsADQQgEGsADQQhEGsADQRAEGsADQRBEGsADQRgEGsADQRhEGsADQSAEGsA
+DQSBEGsADQShEGsADQTAEGsADQTBEGsADQTgEGsADQThEGsADQQAEWsADQQBEWsADQQgEWsADQQh
+EWsADQRBEWsADQRgEWsADQRhEWsADQSAEWsADQSBEWsADQSgEWsADQShEWsADQTAEWsADQTBEWsA
+DQThEWsADQQAEmsADQQBEmsADQQgEmsADQQhEmsADQRAEmsADQRBEmsADQRgEmsADQRhEmsADQSB
+EmsADQSgEmsADQShEmsADQTAEmsADQTBEmsADQTgEmsADQThEmsADQQAE2sADQQBE2sADQQgE2sA
+DQQhE2sADQRAE2sADQRBE2sADQRgE2sADQRhE2sADQSAE2sADQSBE2sADQSgE2sADQShE2sADQTA
+E2sADQTBE2sADQTgE2sADQThE2sADQQAFGsADQQBFGsADQQgFGsADQRAFGsADQRgFGsADQSAFGsA
+DQSgFGsADQShFGsADQTAFGsADQTgFGsADQQAFWsADQQgFWsADQQpFTMCdQVAFWsADQRJFTMCdQVg
+FWsADQSAFWsADQSgFWsADQTAFWsADQTgFWsADQQAFmsADQQgFmsADQRAFmsADQSAFmsADQSgFmsA
+DQTAFmsADQTgFmsADQQAF2sADQQgF2sADQRAF2sADQRgF2sADQSAF2sADQSgF2sADQTAF2sADQTg
+F2sADQQAGGsADQQgGGsADQRgGGsADQSAGGsADQSgGGsADQTAGGsADQTgGGsADQQAGWsADQQgGWsA
+DQRAGWsADQRgGWsADQSAGWsADQSgGWsADQTAGWsADQTgGWsADQQAGmsADQQgGmsADQRAGmsADQRg
+GmsADQSAGmsADQSgGmsADQTAGmsADQQAG2sADQQgG2sADQRAG2sADQRgG2sADQSgG2sADQTAG2sA
+DQTgG2sADQQAHGsADQRAHGsADQRgHGsADQSAHGsADQSgHGsADQTgHGsADQQAHWsADQQgHWsADQRA
+HWsADQRgHWsADQSAHWsADQSgHWsADQTAHWsADQTgHWsADQQAHmsADQQgHmsADQRAHmsADQRgHmsA
+DQSAHmsADQSgHmsADQTAHmsADQTgHmsADQQAH2sADQQgH2sADQRAH2sADQRgH2sADQSAH2sADQSg
+H2sADQTAH2sADQTgH2sADQQAIGsADQQgIGsADQRAIGsADQRgIGsADQSAIGsADQSgIGsADQTAIGsA
+DQQAIWsADQQgIWsADQRAIWsADQRgIWsADQSgIWsADQTAIWsADQTgIWsADQQAImsADQQgImsADQRA
+ImsADQRgImsADQSAImsADQSgImsADQTAImsADQTgImsADQQAI2sADQQgI2sADQRAI2sADQRgI2sA
+DQSAI2sADQTAI2sADQTgI2sADQQAJGsADQQgJGsADQRgJGsADQSAJGsADQSgJGsADQTAJGsADQQA
+JWsADQQgJWsADQRAJWsADQRgJWsADQSgJWsADQTAJWsADQTgJWsADQQAJmsADQRAJmsADQRgJmsA
+DQSAJmsADQSgJmsADQTAJmsADQTgJmsADQQAJ2sADQQgJ2sADQRAJ2sADQRgJ2sADQSAJ2sADQSg
+J2sADQTAJ2sADQTgJ2sADQQAKGsADQQgKGsADQRAKGsADQRgKGsADQSAKGsADQSgKGsADQTAKGsA
+DQTgKGsADQQAKWsADQQgKWsADQRgKWsADQSAKWsADQSgKWsADQTAKWsADQQAKmsADQQgKmsADQRA
+KmsADQRgKmsADQSAKmsADQSgKmsADQTAKmsADQTgKmsADQQAK2sADQQgK2sADQRgK2sADQSAK2sA
+DQSgK2sADQTAK2sADQTgK2sADQQALGsADQQgLGsADQRALGsADQQfBKkEEgUYBSAFMgVpBQIAAQAD
+AAMABAAFAAUABwAGABcACQAZAAoAGgALADkADAA7AA0APQAOAD8ADwBOABAAVQARAF8AEgBhABMA
+YwAUAGUAFQB1ABYAdwAXAH8AGACBABkAgwAaAIUAGwCHABwAkwAdAJUAHgCaAB8AngAhAKQAIgCp
+ACMAqwAAAP8COwAAAAQDPwAAAP8COwAAAAQDdwAAAP8COwAAAAQDqwAAAFkGOwAAAF4GFwEAAGUG
+HAEAAGwGIAEAAHgGJQEAAH8GKQEAAIcGOwAAAIwGKQEAAJcGKQEAAKQGKQEAALAGKQEAAMAGLQEA
+AMkGMgEAANQGOwAAAN0GOwAAAOAGOwAAADwHKQEAAEIHUgEAAOsHpgEAAH0cOwAAAK0cOwAAAN0c
+OwAAAA0dOwAAAD0dOwAAAG0dOwAAAJ0dOwAAAM0dOwAAAP0dOwAAAC0eOwAAAF0eOwAAAI0eOwAA
+AL0eOwAAAO0eOwAAAB0fOwAAAE0fOwAAAH0fOwAAAK0fOwAAAN0fOwAAAA0gOwAAAD0gOwAAAG0g
+OwAAAJ0gOwAAAM0gOwAAAP0gOwAAAC0hOwAAAF0hOwAAAI0hOwAAAL0hOwAAAO0hOwAAAB0iOwAA
+AAQDqwAAAP8COwAAAAQDdwAAAP8COwAAAAQDPwAAAP8COwAAAN0GOwAAANQGOwAAAMkG2AEAAMAG
+3QEAALAGKQEAAKQGKQEAAJcGKQEAAIwGKQEAAIcGOwAAAH8GKQEAAHgGJQEAAGwGIAEAAGUGHAEA
+AF4G4gEAAFkGOwAAANoiKQIAAOMiLgIAAOkiNwIAAGwGIAEAAO8iOwAAAFkGOwAAAN0GOwAAAFsk
+OwAAAGMkOwAAAG0kOwAAAHUkOwAAAHwkWgIAAEIHXwIAAIEkIAEAAI4kIAEAAHgGJQEAAN0GOwAA
+AP8COwAAAAQDPwAAAP8COwAAAAQDdwAAAP8COwAAAAQDqwAAAFkGOwAAAF4GkAIAAGUGHAEAAGwG
+IAEAAHgGJQEAAH8GKQEAAIcGOwAAAIwGKQEAAJcGKQEAAKQGKQEAALAGKQEAAMAGlQIAAMkGmgIA
+ANQGOwAAAN0GOwAAAOAGOwAAADwHKQEAAEIHugIAAFkGOwAAAB0iOwAAAP8COwAAAHclOwAAAIAl
+OwAAAIwlOwAAAJYlNwIAAN0GOwAAADwHKQEAAEIH3gIAAP8COwAAAAQDCwMAAP8COwAAAAQDPwAA
+AP8COwAAAAQDdwAAAFkGOwAAAB0iOwAAAP8COwAAABYnHAEAAMAGXAMAAB8nYQMAADEnYQMAAEQn
+YQMAAFYnYQMAAN0GOwAAAF4GaQMAAMkGbgMAADwHKQEAAEIHjgMAADQoKQEAADkoKQEAAD8oKQEA
+AEMoKQEAAEgoHAEAAKcoOwAAAFkGOwAAAP8CKQEAAK0osgMAAE0pywMAAFspJQEAAD0BOwAAAHAp
+JQEAAPkAOwAAAHwpJQEAANUpIAEAAO8iOwAAAN0pOwAAAOYpOwAAAO8pIAEAAAoq8gMAAIMq9wMA
+AKcqBwQCAAEAAwABAAIAAwABAAQABQACAAMABQABAAcABwACAAYABwACAAgACQABAAkACQACAAsA
+CwABAAwACwACAA0ADQABAA4ADQABABEADwACABAADwABABMAEQACABIAEQACABQAEwABABUAEwAC
+ABYAFQABABcAFQACABgAFwABABkAFwABABsAGQACABoAGQABAB0AGwACABwAGwACAB4AHQABAB8A
+HQACACAAHwABACEAHwACACIAIQABACMAIQABACUAIwACACQAIwABACcAJQACACYAJQACACgAJwAB
+ACkAJwABACsAKQACACoAKQACACwAKwABAC0AKwABAC8ALQACAC4ALQABADIALwACADEALwACADMA
+MQABADQAMQACAEEAMwABAEIAMwACAEcANQABAEgANQABAEoANwACAEkANwABAEwAOQACAEsAOQAC
+AE0AOwABAE4AOwABAFAAPQACAE8APQACAFEAPwABAFIAPwABAFQAQQACAFMAQQABAFYAQwACAFUA
+QwACAFcARQABAFgARQABAFoARwACAFkARwABAFwASQACAFsASQACAF0ASwABAF4ASwACAF8ATQAB
+AGAATQABAGIATwACAGEATwACAGMAUQABAGQAUQABAGYAUwACAGUAUwACAGcAVQABAGgAVQABAGoA
+VwACAGkAVwABAGwAWQACAGsAWQACAG0AWwABAG4AWwACAG8AXQABAHAAXQACAHEAXwABAHIAXwAB
+AHQAYQACAHMAYQABAHYAYwACAHUAYwACAHcAZQABAHgAZQABAHoAZwACAHkAZwACAHsAaQABAHwA
+aQABAH4AawACAH0AawABAIAAbQACAH8AbQACAIEAbwABAIIAbwABAIQAcQACAIMAcQABAIcAcwAC
+AIYAcwACAIgAdQABAIkAdQACAIsAdwABAIwAdwABAI4AeQACAI0AeQACAJAAewABAJEAewACAJIA
+fQABAJMAfQACAJUAfwABAJYAfwABAJgAgQACAJcAgQABAJoAgwACAJkAgwACAJsAhQABAJwAhQAC
+AJ0AhwABAJ4AhwACAJ8AiQABAKAAiQABAKIAiwACAKEAiwABAKQAjQACAKMAjQACAKUAjwABAKYA
+jwABAKgAkQACAKcAkQACAKkAkwABAKoAkwABAKwAlQACAKsAlQABAK4AlwACAK0AlwACAK8AmQAB
+ALAAmQABALIAmwACALEAmwABALUAnQACALQAnQACALYAnwABALcAnwACALgAoQABALkAoQABALsA
+owACALoAowACALwApQABAL0ApQACAL4ApwABAL8ApwACAMAAqQABAMEAqQABAMQAqwACAMMAqwAB
+AMYArQACAMUArQACAMcArwABAMgArwACAMkAsQABAMoAsQACAMsAswABAMwAswABAM4AtQACAM0A
+tQABANAAtwACAM8AtwACANEAuQABANIAuQACANMAuwABANQAuwACANUAvQABANYAvQABANkAvwAC
+ANgAvwABANsAwQACANoAwQACAN0AwwABAN4AwwACAN8AxQABAOAAxQACAOIAxwABAOMAxwABAOUA
+yQACAOQAyQABAOgAywACAOcAywACAOkAzQABAOoAzQABAOwAzwACAOsAzwACAO0A0QABAO4A0QAB
+APAA0wACAO8A0wABAPIA1QACAPEA1QACAPMA1wABAPQA1wACAPUA2QABAPYA2QACAPcA2wABAPgA
+2wABAPoA3QACAPkA3QABAPwA3wACAPsA3wACAP0A4QABAP4A4QABAAAB4wACAP8A4wACAAEB5QAB
+AAIB5QABAAQB5wACAAMB5wABAAYB6QACAAUB6QACAAgB6wABAAkB6wABAAsB7QACAAoB7QABAA4B
+7wACAA0B7wACAA8B8QABABAB8QACABEB8wABABIB8wABABQB9QACABMB9QACABUB9wABABYB9wAC
+ABcB+QABABgB+QACABkB+wABABoB+wABABwB/QACABsB/QABAB8B/wACAB4B/wACACABAQEBACEB
+AQECACMBAwEBACQBAwECACUBBQEBACYBBQEBACkBBwECACgBBwEBACsBCQECACoBCQECAC0BCwEB
+AC4BCwECAC8BDQEBADABDQECADIBDwEBADMBDwEBADUBEQECADQBEQEBADcBEwECADYBEwECADgB
+FQEBADkBFQECADoBFwEBADsBFwECADwBGQEBAD0BGQEBAD8BGwECAD4BGwEBAEEBHQECAEABHQEC
+AEIBHwEBAEMBHwEBAEUBIQECAEQBIQECAEYBIwEBAEcBIwEBAEkBJQECAEgBJQEBAEwBJwECAEsB
+JwECAE0BKQEBAE4BKQECAFABKwEBAFEBKwECAFIBLQEBAFMBLQEBAFUBLwECAFQBLwEBAFcBMQEC
+AFYBMQECAFgBMwEBAFkBMwEBAFwBNQECAFsBNQECAF0BNwEBAF4BNwEBAGABOQECAF8BOQEBAGIB
+OwECAGEBOwEBAGUBPQEBAGYBPwEBAGcBQQEBAGgBQwEBAGkBRQEBAGoBRwECAHABSQECAHEBSwEC
+AHIBTQECAHMBTwECAHQBUQECAHYBUwECAHcBVQEBAHgBVQECAHkBVwFrBIgEjwScBASAAAABAAAA
+axlZTgAAAAAAADkAAAAEAAAAAAAAAAAAAAABAL4BAAAAAAsAAAAAAAAAAAAAAAoA1QEAAAAABAAA
+AAAAAAAAAAAAAQDHAQAAAAALAAAAAAAAAAAAAAAKAGkHAAAAAAQAAAAAAAAAAAAAACMEBC0AAAAA
+CwAAAAAAAAAAAAAACgDzLgAAAAAAAAAAAQAAAGIwAAAAAAA8TW9kdWxlPgBTQ180ZmE1Y2IzYTEz
+MTQ0OTBhOTI4YjQ5OTE4ZTUyMTUxZi5kbGwAQ2VudGVyAFNDXzRmYTVjYjNhMTMxNDQ5MGE5Mjhi
+NDk5MThlNTIxNTFmAEdlb21ldHJ5AEJvdW5kYXJpZXMARGF0dW0AU2l0ZXMAVXNlckNvbXBvbmVu
+dABTY3JpcHRNYWluAFdlYkNsaWVudEV4AFNldHRpbmdzAFNlc3Npb25Cb3VuZGFyaWVzAFNlc3Np
+b25HZW9tZXRyeQBTZXNzaW9uQ2VudGVyAFNlc3Npb25TaXRlAFVzZXIAU2Vzc2lvbgBTaXRlAENv
+bnRyb2xPYmplY3QAQ29udHJvbE9iamVjdHMAWm9uZUdlb21ldHJ5AFpvbmVDZW50ZXIAWm9uZUJv
+dW5kYXJpZXMAWm9uZQBab25lcwBTdGF0VmFsdWUAU3RhdGlzdGljcwBQaXZvdFNvdXJjZUJ1ZmZl
+cgBDb25uZWN0aW9ucwBWYXJpYWJsZXMAUmVzb3VyY2VzAFNDXzRmYTVjYjNhMTMxNDQ5MGE5Mjhi
+NDk5MThlNTIxNTFmLlByb3BlcnRpZXMAbXNjb3JsaWIAU3lzdGVtAE9iamVjdABNaWNyb3NvZnQu
+U3FsU2VydmVyLlR4U2NyaXB0AE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlBpcGVsaW5lAFNjcmlw
+dENvbXBvbmVudABTeXN0ZW0uTmV0AFdlYkNsaWVudABTY3JpcHRCdWZmZXIAU3lzdGVtLkNvbmZp
+Z3VyYXRpb24AQXBwbGljYXRpb25TZXR0aW5nc0Jhc2UAZ2V0X3R5cGUAc2V0X3R5cGUAU3lzdGVt
+LkNvbGxlY3Rpb25zLkdlbmVyaWMATGlzdGAxAGdldF9jb29yZGluYXRlcwBzZXRfY29vcmRpbmF0
+ZXMALmN0b3IAPHR5cGU+a19fQmFja2luZ0ZpZWxkADxjb29yZGluYXRlcz5rX19CYWNraW5nRmll
+bGQAdHlwZQBjb29yZGluYXRlcwBnZXRfbmFtZQBzZXRfbmFtZQBnZXRfY2VudGVyAHNldF9jZW50
+ZXIAZ2V0X3JhZGl1cwBzZXRfcmFkaXVzAERhdGVUaW1lAGdldF9jcmVhdGVfdGltZQBzZXRfY3Jl
+YXRlX3RpbWUAZ2V0X2FjdGl2ZQBzZXRfYWN0aXZlAGdldF92ZXJzaW9uAHNldF92ZXJzaW9uAGdl
+dF9jb2RlAHNldF9jb2RlAGdldF9hY3RpdmVfaW50AHNldF9hY3RpdmVfaW50AGdldF9pbmFjdGl2
+ZV9pbnQAc2V0X2luYWN0aXZlX2ludABnZXRfb2Zmc2l0ZV9pbnQAc2V0X29mZnNpdGVfaW50AGdl
+dF9vZmZsaW5lX3RpbWVvdXQAc2V0X29mZmxpbmVfdGltZW91dABnZXRfZ2VvbWV0cnkAc2V0X2dl
+b21ldHJ5AGdldF9ib3VuZGFyaWVzAHNldF9ib3VuZGFyaWVzAGdldF9sYW5ndWFnZQBzZXRfbGFu
+Z3VhZ2UAZ2V0X2lkAHNldF9pZABnZXRfdGltZXpvbmUAc2V0X3RpbWV6b25lADxuYW1lPmtfX0Jh
+Y2tpbmdGaWVsZAA8Y2VudGVyPmtfX0JhY2tpbmdGaWVsZAA8cmFkaXVzPmtfX0JhY2tpbmdGaWVs
+ZAA8Y3JlYXRlX3RpbWU+a19fQmFja2luZ0ZpZWxkADxhY3RpdmU+a19fQmFja2luZ0ZpZWxkADx2
+ZXJzaW9uPmtfX0JhY2tpbmdGaWVsZAA8Y29kZT5rX19CYWNraW5nRmllbGQAPGFjdGl2ZV9pbnQ+
+a19fQmFja2luZ0ZpZWxkADxpbmFjdGl2ZV9pbnQ+a19fQmFja2luZ0ZpZWxkADxvZmZzaXRlX2lu
+dD5rX19CYWNraW5nRmllbGQAPG9mZmxpbmVfdGltZW91dD5rX19CYWNraW5nRmllbGQAPGdlb21l
+dHJ5PmtfX0JhY2tpbmdGaWVsZAA8Ym91bmRhcmllcz5rX19CYWNraW5nRmllbGQAPGxhbmd1YWdl
+PmtfX0JhY2tpbmdGaWVsZAA8aWQ+a19fQmFja2luZ0ZpZWxkADx0aW1lem9uZT5rX19CYWNraW5n
+RmllbGQAbmFtZQBjZW50ZXIAcmFkaXVzAGNyZWF0ZV90aW1lAGFjdGl2ZQB2ZXJzaW9uAGNvZGUA
+YWN0aXZlX2ludABpbmFjdGl2ZV9pbnQAb2Zmc2l0ZV9pbnQAb2ZmbGluZV90aW1lb3V0AGdlb21l
+dHJ5AGJvdW5kYXJpZXMAbGFuZ3VhZ2UAaWQAdGltZXpvbmUAZ2V0X3RvdGFsAHNldF90b3RhbABn
+ZXRfZGF0YQBzZXRfZGF0YQA8dG90YWw+a19fQmFja2luZ0ZpZWxkADxkYXRhPmtfX0JhY2tpbmdG
+aWVsZAB0b3RhbABkYXRhAEZpbmlzaE91dHB1dHMATWFya091dHB1dHNGaW5pc2hlZABNaWNyb3Nv
+ZnQuU3FsU2VydmVyLlBpcGVsaW5lSG9zdABQaXBlbGluZUJ1ZmZlcgBPdXRwdXROYW1lTWFwAFBy
+aW1lT3V0cHV0AENyZWF0ZU5ld091dHB1dFJvd3MAUHJlRXhlY3V0ZQBQb3N0RXhlY3V0ZQBEb3du
+bG9hZEpzb24AQ29va2llQ29udGFpbmVyAGdldF9Db29raWVDb250YWluZXIAc2V0X0Nvb2tpZUNv
+bnRhaW5lcgBjb250YWluZXIAV2ViUmVxdWVzdABVcmkAR2V0V2ViUmVxdWVzdABXZWJSZXNwb25z
+ZQBJQXN5bmNSZXN1bHQAR2V0V2ViUmVzcG9uc2UAUmVhZENvb2tpZXMAZ2V0X2luY2lkZW50X3J1
+bGVzX2ZjZDgwZjE0NGU0ODQzN2JhMGRiYzYyMDhlOGRlZDQzAHNldF9pbmNpZGVudF9ydWxlc19m
+Y2Q4MGYxNDRlNDg0MzdiYTBkYmM2MjA4ZThkZWQ0MwBnZXRfaW5jaWRlbnRfcnVsZXNfYzdlYmI2
+YjQzZjUyNDA2YmIzNDk4MjZhNjQ2ZmE2NWYAc2V0X2luY2lkZW50X3J1bGVzX2M3ZWJiNmI0M2Y1
+MjQwNmJiMzQ5ODI2YTY0NmZhNjVmAGdldF9pbmNpZGVudF9ydWxlc19lMmZlODg5NDRlMmI0YmE3
+YjFmNzU4YTc1YzYwY2EyMgBzZXRfaW5jaWRlbnRfcnVsZXNfZTJmZTg4OTQ0ZTJiNGJhN2IxZjc1
+OGE3NWM2MGNhMjIAZ2V0X2luY2lkZW50X3J1bGVzXzhiMjJhODU0Zjk5YTRjMDFiZTA2NjRkZWI1
+ZGRhMGM3AHNldF9pbmNpZGVudF9ydWxlc184YjIyYTg1NGY5OWE0YzAxYmUwNjY0ZGViNWRkYTBj
+NwBnZXRfaW5jaWRlbnRfcnVsZXNfOTU5NDMxYjk1NTEyNDQ5N2E2Yzk2NzBlYzVjZmNkYjUAc2V0
+X2luY2lkZW50X3J1bGVzXzk1OTQzMWI5NTUxMjQ0OTdhNmM5NjcwZWM1Y2ZjZGI1AGdldF9pbmNp
+ZGVudF9ydWxlc18wMzkxYjlhYjE4YWY0ZWIzYmQ4NmNjNzYyMDYwY2U1MwBzZXRfaW5jaWRlbnRf
+cnVsZXNfMDM5MWI5YWIxOGFmNGViM2JkODZjYzc2MjA2MGNlNTMAZ2V0X2luY2lkZW50X3J1bGVz
+X2IyMjMwNDk5Nzg5ZTQxMzY5NWViNGMyYzE4ZTEzNzk1AHNldF9pbmNpZGVudF9ydWxlc19iMjIz
+MDQ5OTc4OWU0MTM2OTVlYjRjMmMxOGUxMzc5NQBnZXRfaW5jaWRlbnRfcnVsZXNfMTkxOWNlMTUz
+YTExNDA4MjhjZDExNDU0YTNkYWJjYjAAc2V0X2luY2lkZW50X3J1bGVzXzE5MTljZTE1M2ExMTQw
+ODI4Y2QxMTQ1NGEzZGFiY2IwAGdldF9pbmNpZGVudF9ydWxlc185ZjdiMWYyYTkxYzA0MWY1YjE4
+MDlhOTY0OWFlOTg3NQBzZXRfaW5jaWRlbnRfcnVsZXNfOWY3YjFmMmE5MWMwNDFmNWIxODA5YTk2
+NDlhZTk4NzUAZ2V0X2luY2lkZW50X3J1bGVzXzI0OGY4YzY5ZjhmZDQ2NTQ4NDYzMmZhNmIxYmEx
+YWQyAHNldF9pbmNpZGVudF9ydWxlc18yNDhmOGM2OWY4ZmQ0NjU0ODQ2MzJmYTZiMWJhMWFkMgBn
+ZXRfaW5jaWRlbnRfcnVsZXNfNjhjNDgwZjFkMDI5NDVkZGJhY2UwNTIyOTYzNjI2NWYAc2V0X2lu
+Y2lkZW50X3J1bGVzXzY4YzQ4MGYxZDAyOTQ1ZGRiYWNlMDUyMjk2MzYyNjVmAGdldF9pbmNpZGVu
+dF9ydWxlc19jZWE3ZTAyYThjOGQ0NjY5YWY4YjVhMDU3ZGNjMmVmNwBzZXRfaW5jaWRlbnRfcnVs
+ZXNfY2VhN2UwMmE4YzhkNDY2OWFmOGI1YTA1N2RjYzJlZjcAZ2V0X2luY2lkZW50X3J1bGVzXzdh
+NDFlMTNkMDMyOTQ2MWI5YjhmYTljM2FhZDgyNTgyAHNldF9pbmNpZGVudF9ydWxlc183YTQxZTEz
+ZDAzMjk0NjFiOWI4ZmE5YzNhYWQ4MjU4MgBnZXRfaW5jaWRlbnRfcnVsZXNfMDk3ZDFiMzViZGFl
+NDU4NDg2Mjg1NTJmNGZhYmYwNjQAc2V0X2luY2lkZW50X3J1bGVzXzA5N2QxYjM1YmRhZTQ1ODQ4
+NjI4NTUyZjRmYWJmMDY0AGdldF9pbmNpZGVudF9ydWxlc19iN2I0YTIwMWQ1NjY0NDg3OTAzZDRj
+ZWZmYjFlOTNmOQBzZXRfaW5jaWRlbnRfcnVsZXNfYjdiNGEyMDFkNTY2NDQ4NzkwM2Q0Y2VmZmIx
+ZTkzZjkAZ2V0X2luY2lkZW50X3J1bGVzXzc2YjI4ZTYwYmM0OTQwZGNhNzc2ZDY5M2JmYzQ4MmM2
+AHNldF9pbmNpZGVudF9ydWxlc183NmIyOGU2MGJjNDk0MGRjYTc3NmQ2OTNiZmM0ODJjNgBnZXRf
+aW5jaWRlbnRfcnVsZXNfNGI4NTYyODhmYjk4NGEyNTg5MTA3NDg2M2VhNTczZmMAc2V0X2luY2lk
+ZW50X3J1bGVzXzRiODU2Mjg4ZmI5ODRhMjU4OTEwNzQ4NjNlYTU3M2ZjAGdldF9pbmNpZGVudF9y
+dWxlc19hOGFjNzM3YjU5ZmM0MDNhODRhMjYzMWFiZmYyYTQyNgBzZXRfaW5jaWRlbnRfcnVsZXNf
+YThhYzczN2I1OWZjNDAzYTg0YTI2MzFhYmZmMmE0MjYAZ2V0X2luY2lkZW50X3J1bGVzX2E5Zjg3
+OWFiZGRhNzRhZWViOTNjYjIzOTU1ZWJhZGE5AHNldF9pbmNpZGVudF9ydWxlc19hOWY4NzlhYmRk
+YTc0YWVlYjkzY2IyMzk1NWViYWRhOQBnZXRfaW5jaWRlbnRfcnVsZXNfMmVkNzA0NDZiNGY1NDU1
+OTlhM2QwNzk3NzNhN2Q3MGQAc2V0X2luY2lkZW50X3J1bGVzXzJlZDcwNDQ2YjRmNTQ1NTk5YTNk
+MDc5NzczYTdkNzBkAGdldF9pbmNpZGVudF9ydWxlc18zZWFhYTBhZTNlZDQ0NWU2OGRiOGI2YTcy
+ZTA4YzcwZgBzZXRfaW5jaWRlbnRfcnVsZXNfM2VhYWEwYWUzZWQ0NDVlNjhkYjhiNmE3MmUwOGM3
+MGYAZ2V0X2luY2lkZW50X3J1bGVzX2JiZmZmNTQ0YTg1MTRkMmY5M2EwMThhODg1NGY5MmVkAHNl
+dF9pbmNpZGVudF9ydWxlc19iYmZmZjU0NGE4NTE0ZDJmOTNhMDE4YTg4NTRmOTJlZABnZXRfaW5j
+aWRlbnRfcnVsZXNfZGYyODRlYmIxMWJiNGFhZDkxYjhjNzg0MjRmYmMyZWMAc2V0X2luY2lkZW50
+X3J1bGVzX2RmMjg0ZWJiMTFiYjRhYWQ5MWI4Yzc4NDI0ZmJjMmVjAGdldF9pbmNpZGVudF9ydWxl
+c19kNzA4YWVhYjIzZjI0MTEzYjFlYmEzNDdiMzMzZmNjYgBzZXRfaW5jaWRlbnRfcnVsZXNfZDcw
+OGFlYWIyM2YyNDExM2IxZWJhMzQ3YjMzM2ZjY2IAZ2V0X2luY2lkZW50X3J1bGVzXzg1YzcyMWM1
+ZTdlODRiOTNiYWZiM2ZjZTM4YjgxNWUzAHNldF9pbmNpZGVudF9ydWxlc184NWM3MjFjNWU3ZTg0
+YjkzYmFmYjNmY2UzOGI4MTVlMwBnZXRfaW5jaWRlbnRfcnVsZXNfNjY1ZjUwMzg5YTJmNDczZTlm
+MjAwOWJlMzk0YjhlMTgAc2V0X2luY2lkZW50X3J1bGVzXzY2NWY1MDM4OWEyZjQ3M2U5ZjIwMDli
+ZTM5NGI4ZTE4AGdldF9pbmNpZGVudF9ydWxlc181OGZlYmExZjNlMTQ0ODQ4ODRiNWZmNmFjNGRl
+ZDZkNQBzZXRfaW5jaWRlbnRfcnVsZXNfNThmZWJhMWYzZTE0NDg0ODg0YjVmZjZhYzRkZWQ2ZDUA
+Z2V0X2luY2lkZW50X3J1bGVzX2FhOGZlOTY3YTdjNzRkZjdiMTJkMmY2ODc3OWFjNzEyAHNldF9p
+bmNpZGVudF9ydWxlc19hYThmZTk2N2E3Yzc0ZGY3YjEyZDJmNjg3NzlhYzcxMgBnZXRfaW5jaWRl
+bnRfcnVsZXNfZGI5ZDlkZWNlODc5NGE5Yjg5N2Q4MDYxOGU1MzUxNTEAc2V0X2luY2lkZW50X3J1
+bGVzX2RiOWQ5ZGVjZTg3OTRhOWI4OTdkODA2MThlNTM1MTUxAGdldF9pbmNpZGVudF9ydWxlc18w
+YTc4ZWQ4OGEzOTU0NjYxOTJjOTFhYjQ1NjM0MGVlYgBzZXRfaW5jaWRlbnRfcnVsZXNfMGE3OGVk
+ODhhMzk1NDY2MTkyYzkxYWI0NTYzNDBlZWIAZ2V0X3NpdGVfaWQAc2V0X3NpdGVfaWQAPGluY2lk
+ZW50X3J1bGVzX2ZjZDgwZjE0NGU0ODQzN2JhMGRiYzYyMDhlOGRlZDQzPmtfX0JhY2tpbmdGaWVs
+ZAA8aW5jaWRlbnRfcnVsZXNfYzdlYmI2YjQzZjUyNDA2YmIzNDk4MjZhNjQ2ZmE2NWY+a19fQmFj
+a2luZ0ZpZWxkADxpbmNpZGVudF9ydWxlc19lMmZlODg5NDRlMmI0YmE3YjFmNzU4YTc1YzYwY2Ey
+Mj5rX19CYWNraW5nRmllbGQAPGluY2lkZW50X3J1bGVzXzhiMjJhODU0Zjk5YTRjMDFiZTA2NjRk
+ZWI1ZGRhMGM3PmtfX0JhY2tpbmdGaWVsZAA8aW5jaWRlbnRfcnVsZXNfOTU5NDMxYjk1NTEyNDQ5
+N2E2Yzk2NzBlYzVjZmNkYjU+a19fQmFja2luZ0ZpZWxkADxpbmNpZGVudF9ydWxlc18wMzkxYjlh
+YjE4YWY0ZWIzYmQ4NmNjNzYyMDYwY2U1Mz5rX19CYWNraW5nRmllbGQAPGluY2lkZW50X3J1bGVz
+X2IyMjMwNDk5Nzg5ZTQxMzY5NWViNGMyYzE4ZTEzNzk1PmtfX0JhY2tpbmdGaWVsZAA8aW5jaWRl
+bnRfcnVsZXNfMTkxOWNlMTUzYTExNDA4MjhjZDExNDU0YTNkYWJjYjA+a19fQmFja2luZ0ZpZWxk
+ADxpbmNpZGVudF9ydWxlc185ZjdiMWYyYTkxYzA0MWY1YjE4MDlhOTY0OWFlOTg3NT5rX19CYWNr
+aW5nRmllbGQAPGluY2lkZW50X3J1bGVzXzI0OGY4YzY5ZjhmZDQ2NTQ4NDYzMmZhNmIxYmExYWQy
+PmtfX0JhY2tpbmdGaWVsZAA8aW5jaWRlbnRfcnVsZXNfNjhjNDgwZjFkMDI5NDVkZGJhY2UwNTIy
+OTYzNjI2NWY+a19fQmFja2luZ0ZpZWxkADxpbmNpZGVudF9ydWxlc19jZWE3ZTAyYThjOGQ0NjY5
+YWY4YjVhMDU3ZGNjMmVmNz5rX19CYWNraW5nRmllbGQAPGluY2lkZW50X3J1bGVzXzdhNDFlMTNk
+MDMyOTQ2MWI5YjhmYTljM2FhZDgyNTgyPmtfX0JhY2tpbmdGaWVsZAA8aW5jaWRlbnRfcnVsZXNf
+MDk3ZDFiMzViZGFlNDU4NDg2Mjg1NTJmNGZhYmYwNjQ+a19fQmFja2luZ0ZpZWxkADxpbmNpZGVu
+dF9ydWxlc19iN2I0YTIwMWQ1NjY0NDg3OTAzZDRjZWZmYjFlOTNmOT5rX19CYWNraW5nRmllbGQA
+PGluY2lkZW50X3J1bGVzXzc2YjI4ZTYwYmM0OTQwZGNhNzc2ZDY5M2JmYzQ4MmM2PmtfX0JhY2tp
+bmdGaWVsZAA8aW5jaWRlbnRfcnVsZXNfNGI4NTYyODhmYjk4NGEyNTg5MTA3NDg2M2VhNTczZmM+
+a19fQmFja2luZ0ZpZWxkADxpbmNpZGVudF9ydWxlc19hOGFjNzM3YjU5ZmM0MDNhODRhMjYzMWFi
+ZmYyYTQyNj5rX19CYWNraW5nRmllbGQAPGluY2lkZW50X3J1bGVzX2E5Zjg3OWFiZGRhNzRhZWVi
+OTNjYjIzOTU1ZWJhZGE5PmtfX0JhY2tpbmdGaWVsZAA8aW5jaWRlbnRfcnVsZXNfMmVkNzA0NDZi
+NGY1NDU1OTlhM2QwNzk3NzNhN2Q3MGQ+a19fQmFja2luZ0ZpZWxkADxpbmNpZGVudF9ydWxlc18z
+ZWFhYTBhZTNlZDQ0NWU2OGRiOGI2YTcyZTA4YzcwZj5rX19CYWNraW5nRmllbGQAPGluY2lkZW50
+X3J1bGVzX2JiZmZmNTQ0YTg1MTRkMmY5M2EwMThhODg1NGY5MmVkPmtfX0JhY2tpbmdGaWVsZAA8
+aW5jaWRlbnRfcnVsZXNfZGYyODRlYmIxMWJiNGFhZDkxYjhjNzg0MjRmYmMyZWM+a19fQmFja2lu
+Z0ZpZWxkADxpbmNpZGVudF9ydWxlc19kNzA4YWVhYjIzZjI0MTEzYjFlYmEzNDdiMzMzZmNjYj5r
+X19CYWNraW5nRmllbGQAPGluY2lkZW50X3J1bGVzXzg1YzcyMWM1ZTdlODRiOTNiYWZiM2ZjZTM4
+YjgxNWUzPmtfX0JhY2tpbmdGaWVsZAA8aW5jaWRlbnRfcnVsZXNfNjY1ZjUwMzg5YTJmNDczZTlm
+MjAwOWJlMzk0YjhlMTg+a19fQmFja2luZ0ZpZWxkADxpbmNpZGVudF9ydWxlc181OGZlYmExZjNl
+MTQ0ODQ4ODRiNWZmNmFjNGRlZDZkNT5rX19CYWNraW5nRmllbGQAPGluY2lkZW50X3J1bGVzX2Fh
+OGZlOTY3YTdjNzRkZjdiMTJkMmY2ODc3OWFjNzEyPmtfX0JhY2tpbmdGaWVsZAA8aW5jaWRlbnRf
+cnVsZXNfZGI5ZDlkZWNlODc5NGE5Yjg5N2Q4MDYxOGU1MzUxNTE+a19fQmFja2luZ0ZpZWxkADxp
+bmNpZGVudF9ydWxlc18wYTc4ZWQ4OGEzOTU0NjYxOTJjOTFhYjQ1NjM0MGVlYj5rX19CYWNraW5n
+RmllbGQAPHNpdGVfaWQ+a19fQmFja2luZ0ZpZWxkAGluY2lkZW50X3J1bGVzX2ZjZDgwZjE0NGU0
+ODQzN2JhMGRiYzYyMDhlOGRlZDQzAGluY2lkZW50X3J1bGVzX2M3ZWJiNmI0M2Y1MjQwNmJiMzQ5
+ODI2YTY0NmZhNjVmAGluY2lkZW50X3J1bGVzX2UyZmU4ODk0NGUyYjRiYTdiMWY3NThhNzVjNjBj
+YTIyAGluY2lkZW50X3J1bGVzXzhiMjJhODU0Zjk5YTRjMDFiZTA2NjRkZWI1ZGRhMGM3AGluY2lk
+ZW50X3J1bGVzXzk1OTQzMWI5NTUxMjQ0OTdhNmM5NjcwZWM1Y2ZjZGI1AGluY2lkZW50X3J1bGVz
+XzAzOTFiOWFiMThhZjRlYjNiZDg2Y2M3NjIwNjBjZTUzAGluY2lkZW50X3J1bGVzX2IyMjMwNDk5
+Nzg5ZTQxMzY5NWViNGMyYzE4ZTEzNzk1AGluY2lkZW50X3J1bGVzXzE5MTljZTE1M2ExMTQwODI4
+Y2QxMTQ1NGEzZGFiY2IwAGluY2lkZW50X3J1bGVzXzlmN2IxZjJhOTFjMDQxZjViMTgwOWE5NjQ5
+YWU5ODc1AGluY2lkZW50X3J1bGVzXzI0OGY4YzY5ZjhmZDQ2NTQ4NDYzMmZhNmIxYmExYWQyAGlu
+Y2lkZW50X3J1bGVzXzY4YzQ4MGYxZDAyOTQ1ZGRiYWNlMDUyMjk2MzYyNjVmAGluY2lkZW50X3J1
+bGVzX2NlYTdlMDJhOGM4ZDQ2NjlhZjhiNWEwNTdkY2MyZWY3AGluY2lkZW50X3J1bGVzXzdhNDFl
+MTNkMDMyOTQ2MWI5YjhmYTljM2FhZDgyNTgyAGluY2lkZW50X3J1bGVzXzA5N2QxYjM1YmRhZTQ1
+ODQ4NjI4NTUyZjRmYWJmMDY0AGluY2lkZW50X3J1bGVzX2I3YjRhMjAxZDU2NjQ0ODc5MDNkNGNl
+ZmZiMWU5M2Y5AGluY2lkZW50X3J1bGVzXzc2YjI4ZTYwYmM0OTQwZGNhNzc2ZDY5M2JmYzQ4MmM2
+AGluY2lkZW50X3J1bGVzXzRiODU2Mjg4ZmI5ODRhMjU4OTEwNzQ4NjNlYTU3M2ZjAGluY2lkZW50
+X3J1bGVzX2E4YWM3MzdiNTlmYzQwM2E4NGEyNjMxYWJmZjJhNDI2AGluY2lkZW50X3J1bGVzX2E5
+Zjg3OWFiZGRhNzRhZWViOTNjYjIzOTU1ZWJhZGE5AGluY2lkZW50X3J1bGVzXzJlZDcwNDQ2YjRm
+NTQ1NTk5YTNkMDc5NzczYTdkNzBkAGluY2lkZW50X3J1bGVzXzNlYWFhMGFlM2VkNDQ1ZTY4ZGI4
+YjZhNzJlMDhjNzBmAGluY2lkZW50X3J1bGVzX2JiZmZmNTQ0YTg1MTRkMmY5M2EwMThhODg1NGY5
+MmVkAGluY2lkZW50X3J1bGVzX2RmMjg0ZWJiMTFiYjRhYWQ5MWI4Yzc4NDI0ZmJjMmVjAGluY2lk
+ZW50X3J1bGVzX2Q3MDhhZWFiMjNmMjQxMTNiMWViYTM0N2IzMzNmY2NiAGluY2lkZW50X3J1bGVz
+Xzg1YzcyMWM1ZTdlODRiOTNiYWZiM2ZjZTM4YjgxNWUzAGluY2lkZW50X3J1bGVzXzY2NWY1MDM4
+OWEyZjQ3M2U5ZjIwMDliZTM5NGI4ZTE4AGluY2lkZW50X3J1bGVzXzU4ZmViYTFmM2UxNDQ4NDg4
+NGI1ZmY2YWM0ZGVkNmQ1AGluY2lkZW50X3J1bGVzX2FhOGZlOTY3YTdjNzRkZjdiMTJkMmY2ODc3
+OWFjNzEyAGluY2lkZW50X3J1bGVzX2RiOWQ5ZGVjZTg3OTRhOWI4OTdkODA2MThlNTM1MTUxAGlu
+Y2lkZW50X3J1bGVzXzBhNzhlZDg4YTM5NTQ2NjE5MmM5MWFiNDU2MzQwZWViAHNpdGVfaWQAZ2V0
+X3NldHRpbmdzAHNldF9zZXR0aW5ncwBnZXRfc2l0ZXMAc2V0X3NpdGVzAGdldF9yb2xlcwBzZXRf
+cm9sZXMAZ2V0X2xvZ2luAHNldF9sb2dpbgA8c2V0dGluZ3M+a19fQmFja2luZ0ZpZWxkADxzaXRl
+cz5rX19CYWNraW5nRmllbGQAPHJvbGVzPmtfX0JhY2tpbmdGaWVsZAA8bG9naW4+a19fQmFja2lu
+Z0ZpZWxkAHNldHRpbmdzAHNpdGVzAHJvbGVzAGxvZ2luAGdldF91c2VyX2lkAHNldF91c2VyX2lk
+AGdldF91c2VyX25hbWUAc2V0X3VzZXJfbmFtZQBnZXRfYWRkcmVzcwBzZXRfYWRkcmVzcwBnZXRf
+Y2xpZW50AHNldF9jbGllbnQAZ2V0X3VzZXIAc2V0X3VzZXIAZ2V0X3JlcXVlc3RfdGltZQBzZXRf
+cmVxdWVzdF90aW1lAGdldF9vcGVuX3RpbWUAc2V0X29wZW5fdGltZQA8dXNlcl9pZD5rX19CYWNr
+aW5nRmllbGQAPHVzZXJfbmFtZT5rX19CYWNraW5nRmllbGQAPGFkZHJlc3M+a19fQmFja2luZ0Zp
+ZWxkADxjbGllbnQ+a19fQmFja2luZ0ZpZWxkADx1c2VyPmtfX0JhY2tpbmdGaWVsZAA8cmVxdWVz
+dF90aW1lPmtfX0JhY2tpbmdGaWVsZAA8b3Blbl90aW1lPmtfX0JhY2tpbmdGaWVsZAB1c2VyX2lk
+AHVzZXJfbmFtZQBhZGRyZXNzAGNsaWVudAB1c2VyAHJlcXVlc3RfdGltZQBvcGVuX3RpbWUAZ2V0
+X2NhdGVnb3J5AHNldF9jYXRlZ29yeQBnZXRfZGVzY3JpcHRpb24Ac2V0X2Rlc2NyaXB0aW9uAGdl
+dF9kZXZpY2VfaWQAc2V0X2RldmljZV9pZABnZXRfZ3JvdXBfaWRzAHNldF9ncm91cF9pZHMAPGNh
+dGVnb3J5PmtfX0JhY2tpbmdGaWVsZAA8ZGVzY3JpcHRpb24+a19fQmFja2luZ0ZpZWxkADxkZXZp
+Y2VfaWQ+a19fQmFja2luZ0ZpZWxkADxncm91cF9pZHM+a19fQmFja2luZ0ZpZWxkAGNhdGVnb3J5
+AGRlc2NyaXB0aW9uAGRldmljZV9pZABncm91cF9pZHMAZ2V0X2Rpc3RhbmNlAHNldF9kaXN0YW5j
+ZQBnZXRfZXhjbHVkZV9ncm91cF9pZHMAc2V0X2V4Y2x1ZGVfZ3JvdXBfaWRzAGdldF9leGNsdWRl
+X29iamVjdF9pZHMAc2V0X2V4Y2x1ZGVfb2JqZWN0X2lkcwBnZXRfaW5jbHVkZV9ncm91cF9pZHMA
+c2V0X2luY2x1ZGVfZ3JvdXBfaWRzAGdldF9pbmNsdWRlX29iamVjdF9pZHMAc2V0X2luY2x1ZGVf
+b2JqZWN0X2lkcwA8ZGlzdGFuY2U+a19fQmFja2luZ0ZpZWxkADxleGNsdWRlX2dyb3VwX2lkcz5r
+X19CYWNraW5nRmllbGQAPGV4Y2x1ZGVfb2JqZWN0X2lkcz5rX19CYWNraW5nRmllbGQAPGluY2x1
+ZGVfZ3JvdXBfaWRzPmtfX0JhY2tpbmdGaWVsZAA8aW5jbHVkZV9vYmplY3RfaWRzPmtfX0JhY2tp
+bmdGaWVsZABkaXN0YW5jZQBleGNsdWRlX2dyb3VwX2lkcwBleGNsdWRlX29iamVjdF9pZHMAaW5j
+bHVkZV9ncm91cF9pZHMAaW5jbHVkZV9vYmplY3RfaWRzAGdldF95ZWFyAHNldF95ZWFyAGdldF9t
+b250aABzZXRfbW9udGgAZ2V0X2RheQBzZXRfZGF5AGdldF9ob3VyAHNldF9ob3VyAGdldF92YWx1
+ZQBzZXRfdmFsdWUAPHllYXI+a19fQmFja2luZ0ZpZWxkADxtb250aD5rX19CYWNraW5nRmllbGQA
+PGRheT5rX19CYWNraW5nRmllbGQAPGhvdXI+a19fQmFja2luZ0ZpZWxkADx2YWx1ZT5rX19CYWNr
+aW5nRmllbGQAeWVhcgBtb250aABkYXkAaG91cgB2YWx1ZQBnZXRfZ3JvdXAAc2V0X2dyb3VwAGdl
+dF92YWx1ZXMAc2V0X3ZhbHVlcwA8Z3JvdXA+a19fQmFja2luZ0ZpZWxkADx2YWx1ZXM+a19fQmFj
+a2luZ0ZpZWxkAGdyb3VwAHZhbHVlcwBEZWNpbWFsAHNldF9QcmVzZW5jZVZhbHVlAHNldF9QcmVz
+ZW5jZVZhbHVlX0lzTnVsbABzZXRfWm9uZQBzZXRfWm9uZV9Jc051bGwAc2V0X0NvbnRyb2xPYmpl
+Y3QAc2V0X0NvbnRyb2xPYmplY3RfSXNOdWxsAEFkZFJvdwBTZXRFbmRPZlJvd3NldABFbmRPZlJv
+d3NldABQcmVzZW5jZVZhbHVlAFByZXNlbmNlVmFsdWVfSXNOdWxsAFpvbmVfSXNOdWxsAENvbnRy
+b2xPYmplY3RfSXNOdWxsAFBhcmVudENvbXBvbmVudABnZXRfZW5kRGF0ZQBnZXRfcGFzc3dvcmQA
+Z2V0X3NpdGVOYW1lAGdldF9zdGFydERhdGUAZW5kRGF0ZQBwYXNzd29yZABzaXRlTmFtZQBzdGFy
+dERhdGUAU3lzdGVtLlJlc291cmNlcwBSZXNvdXJjZU1hbmFnZXIAcmVzb3VyY2VNYW4AU3lzdGVt
+Lkdsb2JhbGl6YXRpb24AQ3VsdHVyZUluZm8AcmVzb3VyY2VDdWx0dXJlAGdldF9SZXNvdXJjZU1h
+bmFnZXIAZ2V0X0N1bHR1cmUAc2V0X0N1bHR1cmUAQ3VsdHVyZQBkZWZhdWx0SW5zdGFuY2UAZ2V0
+X0RlZmF1bHQARGVmYXVsdABPdXRwdXRzAE91dHB1dElEcwBCdWZmZXJzAE91dHB1dE1hcABkb3du
+bG9hZFVSTAByZXF1ZXN0AHJlc3VsdAByAEJ1ZmZlcgBCdWZmZXJDb2x1bW5JbmRleGVzAENvbXBv
+bmVudABTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5nAFRhcmdldEZyYW1ld29ya0F0dHJpYnV0ZQBT
+eXN0ZW0uUmVmbGVjdGlvbgBBc3NlbWJseVRpdGxlQXR0cmlidXRlAEFzc2VtYmx5RGVzY3JpcHRp
+b25BdHRyaWJ1dGUAQXNzZW1ibHlDb25maWd1cmF0aW9uQXR0cmlidXRlAEFzc2VtYmx5Q29tcGFu
+eUF0dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRy
+aWJ1dGUAQXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1dGUAQXNzZW1ibHlDdWx0dXJlQXR0cmlidXRl
+AEFzc2VtYmx5VmVyc2lvbkF0dHJpYnV0ZQBTeXN0ZW0uUnVudGltZS5Db21waWxlclNlcnZpY2Vz
+AENvbXBpbGF0aW9uUmVsYXhhdGlvbnNBdHRyaWJ1dGUAUnVudGltZUNvbXBhdGliaWxpdHlBdHRy
+aWJ1dGUAQ29tcGlsZXJHZW5lcmF0ZWRBdHRyaWJ1dGUAR2V0T3V0cHV0SUQAR2V0Q29sdW1uSW5k
+ZXhlcwBTU0lTU2NyaXB0Q29tcG9uZW50RW50cnlQb2ludEF0dHJpYnV0ZQBTeXN0ZW0uV2ViLkV4
+dGVuc2lvbnMAU3lzdGVtLldlYi5TY3JpcHQuU2VyaWFsaXphdGlvbgBKYXZhU2NyaXB0U2VyaWFs
+aXplcgBXZWJIZWFkZXJDb2xsZWN0aW9uAGdldF9IZWFkZXJzAEh0dHBSZXF1ZXN0SGVhZGVyAEFk
+ZABTdHJpbmcAQ29uY2F0AFVwbG9hZFN0cmluZwBUeXBlAFJ1bnRpbWVUeXBlSGFuZGxlAEdldFR5
+cGVGcm9tSGFuZGxlAERlc2VyaWFsaXplAElEaXNwb3NhYmxlAERpc3Bvc2UAU3lzdGVtLkNvbGxl
+Y3Rpb25zLlNwZWNpYWxpemVkAE5hbWVWYWx1ZUNvbGxlY3Rpb24ARG93bmxvYWRTdHJpbmcAZ2V0
+X0l0ZW0ARXF1YWxzAGdldF9Nb250aABJbnQzMgBnZXRfRGF5AGdldF9Ib3VyAGdldF9NaW51dGUA
+Z2V0X1llYXIAZ2V0X0NvdW50AENvbnZlcnQAVG9EZWNpbWFsAEh0dHBXZWJSZXF1ZXN0AEh0dHBX
+ZWJSZXNwb25zZQBDb29raWVDb2xsZWN0aW9uAGdldF9Db29raWVzAHNldF9JdGVtAFNldE51bGwA
+SW52YWxpZE9wZXJhdGlvbkV4Y2VwdGlvbgBNaWNyb3NvZnQuU3FsU2VydmVyLkRUU1J1bnRpbWVX
+cmFwAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlJ1bnRpbWUuV3JhcHBlcgBJRFRTVmFyaWFibGVz
+MTAwAGdldF9SZWFkT25seVZhcmlhYmxlcwBJRFRTVmFyaWFibGUxMDAAU2NyaXB0Q29tcG9uZW50
+RXZhbENvbnRleHQAZ2V0X0V2YWx1YXRvckNvbnRleHQASURUU0V2YWx1YXRvckNvbnRleHQxMDAA
+R2V0VmFsdWVXaXRoQ29udGV4dABTeXN0ZW0uRGlhZ25vc3RpY3MARGVidWdnZXJOb25Vc2VyQ29k
+ZUF0dHJpYnV0ZQBBc3NlbWJseQBnZXRfQXNzZW1ibHkAU3lzdGVtLkNvbXBvbmVudE1vZGVsAEVk
+aXRvckJyb3dzYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVTdGF0ZQAuY2N0b3IAU0NfNGZh
+NWNiM2ExMzE0NDkwYTkyOGI0OTkxOGU1MjE1MWYuUHJvcGVydGllcy5SZXNvdXJjZXMucmVzb3Vy
+Y2VzAAAAAAAXUABpAHYAbwB0AFMAbwB1AHIAYwBlAAAjNQA0AC4AMQA1ADgALgA3ADYALgAzADAA
+OgA4ADAAOAAwAAAhYQBwAHAAbABpAGMAYQB0AGkAbwBuAC8AagBzAG8AbgAAD2gAdAB0AHAAOgAv
+AC8AAB0vAGEAcABpAC8AdgAxAC8AcwBpAGcAbgBpAG4AAAlQAE8AUwBUAAAVewAiAGwAbwBnAGkA
+bgAiADoAIgAAHSIALAAiAHAAYQBzAHMAdwBvAHIAZAAiADoAIgAABSIAfQAAAQAZeAAtAHMAZQBz
+AHMAaQBvAG4ALQBpAGQAARsvAGEAcABpAC8AdgAxAC8AcwBpAHQAZQBzAAAdLwBhAHAAaQAvAHYA
+MQAvAHMAaQB0AGUAcwAvAAAhLwBjAG8AbgB0AHIAbwBsAF8AbwBiAGoAZQBjAHQAcwAADS8AegBv
+AG4AZQBzAAADMAAAJy8AYQBwAGkALwB2ADEALwBzAHQAYQB0AGkAcwB0AGkAYwBzAC8AABUvAHAA
+cgBlAHMAZQBuAGMAZQAuAAADLgAAFz8AZgByAG8AbQBfAHQAaQBtAGUAPQAAAy0AAQNUAAADOgAA
+IzoAMAAwAC4AMAAwADAAWgAmAHQAbwBfAHQAaQBtAGUAPQAAHzoAMAAwAC4AMAAwADAAWgAmAHQA
+eQBwAGUAPQA0AAAfLwBhAHAAaQAvAHYAMQAvAHMAaQBnAG4AbwB1AHQAAICrIQQyBD4EOQRBBEIE
+MgQ+BCAASQBzAE4AdQBsAGwAIAA9BDUEIAA8BD4ENgQ1BEIEIAA4BDwENQRCBEwEIAA3BD0EMARH
+BDUEPQQ4BDUEIABGAEEATABTAEUALgAgAB8EQAQ4BEEEMgQ+BDkEQgQ1BCAAQQRCBD4EOwQxBEYE
+QwQgADoEMAQ6BD4ENQQtADsEOAQxBD4EIAA3BD0EMARHBDUEPQQ4BDUELgABD2UAbgBkAEQAYQB0
+AGUAAAtsAG8AZwBpAG4AABFwAGEAcwBzAHcAbwByAGQAABFzAGkAdABlAE4AYQBtAGUAABNzAHQA
+YQByAHQARABhAHQAZQAAcVMAQwBfADQAZgBhADUAYwBiADMAYQAxADMAMQA0ADQAOQAwAGEAOQAy
+ADgAYgA0ADkAOQAxADgAZQA1ADIAMQA1ADEAZgAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUA
+cwBvAHUAcgBjAGUAcwAAhk9lwnvPQ0OjbBo7LN62MQAIt3pcVhk04IkIiYRdzYCAzJEDIAAOBCAB
+AQ4HIAAVEhkBDQggAQEVEhkBDQMgAAECBg4GBhUSGQENAygADgcoABUSGQENDyAAFRIZARUSGQEV
+EhkBDRAgAQEVEhkBFRIZARUSGQENDgYVEhkBFRIZARUSGQENDygAFRIZARUSGQEVEhkBDQsgABUS
+GQEVEhkBDQwgAQEVEhkBFRIZAQ0KBhUSGQEVEhkBDQsoABUSGQEVEhkBDQQgABIIBSABARIIAyAA
+DQQgAQENBCAAER0FIAEBER0DIAACBCABAQIDIAAIBCABAQgEIAASDAUgAQESDAQgABIQBSABARIQ
+AwYSCAIGDQMGER0CBgICBggDBhIMAwYSEAQoABIIAygADQQoABEdAygAAgMoAAgEKAASDAQoABIQ
+CCAAFRIZARIUCSABARUSGQESFAcGFRIZARIUCCgAFRIZARIUBAYSgIAEBhKAhAMGEnwLIAQBCB0I
+HRIhEiUEAAEODgUgAQESKQQgABIpAwYSKQYgARItEjEIIAISNRItEjkGIAESNRItBSABARI1BCgA
+EikEIAASLAUgAQESLAQgABIwBSABARIwBCAAEjQFIAEBEjQDBhIsAwYSMAMGEjQEKAASLAQoABIw
+BCgAEjQEIAASKAUgAQESKAggABUSGQESOAkgAQEVEhkBEjgHIAAVEhkBDgggAQEVEhkBDgMGEigH
+BhUSGQESOAYGFRIZAQ4EKAASKAgoABUSGQESOAcoABUSGQEOBCAAEjwFIAEBEjwDIAAcBCABARwD
+BhI8AgYcBCgAEjwDKAAcBCAAEkQFIAEBEkQEIAASSAUgAQESSAQgABJMBSABARJMAwYSRAMGEkgD
+BhJMBCgAEkQEKAASSAQoABJMCCAAFRIZARJQCSABARUSGQESUAcGFRIZARJQCCgAFRIZARJQCCAA
+FRIZARJYCSABARUSGQESWAcGFRIZARJYCCgAFRIZARJYCyAAFRIZARUSGQEcDCABARUSGQEVEhkB
+HAoGFRIZARUSGQEcCygAFRIZARUSGQEcBCAAEmAFIAEBEmAHIAAVEhkBHAggAQEVEhkBHAQgABJk
+BSABARJkBCAAEmgFIAEBEmgDBhJgBgYVEhkBHAMGEmQDBhJoBCgAEmAHKAAVEhkBHAQoABJkBCgA
+EmgIIAAVEhkBEmwJIAEBFRIZARJsBwYVEhkBEmwIKAAVEhkBEmwIIAAVEhkBEnQJIAEBFRIZARJ0
+BwYVEhkBEnQIKAAVEhkBEnQJIAMBEiEdCBIlBSABARE9BCgAET0DBhIJBSABARIJAwYSQQMGEkUE
+AAASQQQAABJFBQABARJFBAgAEkEECAASRQQGEoCMBQAAEoCMBQgAEoCMBAEAAAAGAAIIEiUOBSAB
+HQgIAwcBCAgxvzhWrTZONQUgABKAhQcgAgERgIkOBgADDg4ODgUAAQ4dDgcgAw4SMQ4OCAABEoCR
+EYCVByACHA4SgJEFIAIBDg4EIAEODgYVEhkBElAFIAETAAgEIAECDgQAAQ4cBQACDhwcBhUSGQES
+WAYVEhkBEmwFAAEOHRwGFRIZARJ0BQABET0NaAc+DhKAgQ4SJA4SQA4SDRJUDggOEg0SXA4SDRJw
+Eg0IDQgODg4ODg4ODg4OEngNCBINHQ4dDh0OER0RHREdER0RHREdER0RHREdER0RHREdER0RHREd
+ER0RHREdER0RHREdER0RHR0cBQcCEg0OBwcCEi0SgKkEBwESNQUgABKAsQYgAQESgLEIBwISgK0S
+gLEFIAIBCBwFIAASgLkGIAESgL0cBQAAEoDBBiABHBKAxQUgABKAzQcgAgEOEoDNBAcBEkEGIAEB
+EYDVCAEAAgAAAAAAAwAAAUcBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuMAEAVA4URnJhbWV3
+b3JrRGlzcGxheU5hbWUQLk5FVCBGcmFtZXdvcmsgNCgBACNTQ180ZmE1Y2IzYTEzMTQ0OTBhOTI4
+YjQ5OTE4ZTUyMTUxZgAABQEAAAAAFgEAEUNvcHlyaWdodCBAICAyMDE3AAAIAQAIAAAAAAAeAQAB
+AFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MB4K0AAAAAAAAAAAAA/q0AAAAgAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAPCtAAAAAAAAAAAAAAAAAAAAAF9Db3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/
+JQAgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA
+EAAAABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAAAEgAAABY
+wAAAsAMAAAAAAAAAAAAAsAM0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8AAAAAAL0E
+7/4AAAEAAAABAFlOaxkAAAEAWU5rGT8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAAAQBW
+AGEAcgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8AbgAAAAAA
+AACwBBADAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAOwCAAABADAAMAAwADAAMAA0
+AGIAMAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABTAEMAXwA0AGYA
+YQA1AGMAYgAzAGEAMQAzADEANAA0ADkAMABhADkAMgA4AGIANAA5ADkAMQA4AGUANQAyADEANQAx
+AGYAAABAAA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4ANgA1ADAANwAuADIA
+MAAwADUANwAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAEMAXwA0AGYAYQA1
+AGMAYgAzAGEAMQAzADEANAA0ADkAMABhADkAMgA4AGIANAA5ADkAMQA4AGUANQAyADEANQAxAGYA
+LgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMAbwBwAHkAcgBp
+AGcAaAB0ACAAQAAgACAAMgAwADEANwAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkAbABlAG4A
+YQBtAGUAAABTAEMAXwA0AGYAYQA1AGMAYgAzAGEAMQAzADEANAA0ADkAMABhADkAMgA4AGIANAA5
+ADkAMQA4AGUANQAyADEANQAxAGYALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQATgBhAG0A
+ZQAAAAAAUwBDAF8ANABmAGEANQBjAGIAMwBhADEAMwAxADQANAA5ADAAYQA5ADIAOABiADQAOQA5
+ADEAOABlADUAMgAxADUAMQBmAAAARAAPAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkAbwBuAAAA
+MQAuADAALgA2ADUAMAA3AC4AMgAwADAANQA3AAAAAABIAA8AAQBBAHMAcwBlAG0AYgBsAHkAIABW
+AGUAcgBzAGkAbwBuAAAAMQAuADAALgA2ADUAMAA3AC4AMgAwADAANQA3AAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAADAAAABA+AAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Указывает проект средств Microsoft Visual Studio для приложений. Имена проектов должны быть уникальными в пределах пакета."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_4fa5cb3a1314490a928b49918e52151f</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает язык программирования, используемый скриптом."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages, Microsoft.SqlServer.VSTAScriptingLib, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает переменные, доступные только для чтения (через запятую)."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">$Package::endDate,$Package::login,$Package::password,$Package::siteName,$Package::startDate</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает переменные, доступные для чтения и записи (через запятую)."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="Список имеющихся в скрипте точек останова."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Контрольная сумма для сопоставления метаданных компонента со скомпилированным кодом."
+                  name="MetadataChecksum"
+                  typeConverter="NOTBROWSABLE">83663667c241a6d2c9e76f2519c71acd</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.ScriptComponentHost, Microsoft.SqlServer.TxScript, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <outputs>
+                <output
+                  refId="Package\Export presence in zones\rest api json.Outputs[PivotSource]"
+                  hasSideEffects="true"
+                  name="PivotSource">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]"
+                      dataType="decimal"
+                      lineageId="Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[PresenceValue]"
+                      name="PresenceValue" />
+                    <outputColumn
+                      refId="Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[Zone]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[Zone]"
+                      name="Zone" />
+                    <outputColumn
+                      refId="Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[ControlObject]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Export presence in zones\rest api json.Outputs[PivotSource].Columns[ControlObject]"
+                      name="ControlObject" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Export presence in zones.Paths[PivotSource]"
+              endId="Package\Export presence in zones\Pivot.Inputs[Вход преобразования &quot;Сведение&quot; по умолчанию]"
+              name="PivotSource"
+              startId="Package\Export presence in zones\rest api json.Outputs[PivotSource]" />
+            <path
+              refId="Package\Export presence in zones.Paths[Выход преобразования &quot;Сведение&quot; по умолчанию]"
+              endId="Package\Export presence in zones\presence in zones.Inputs[Вход назначения &quot;SQL Server&quot;]"
+              name="Выход преобразования &quot;Сведение&quot; по умолчанию"
+              startId="Package\Export presence in zones\Pivot.Outputs[Выход преобразования &quot;Сведение&quot; по умолчанию]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="197,42"
+          Id="Package\Export presence in zones"
+          TopLeft="332,164" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Export presence in zones">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Export presence in zones\presence in zones"
+          TopLeft="401,265" />
+        <NodeLayout
+          Size="137,42"
+          Id="Package\Export presence in zones\rest api json"
+          TopLeft="351,67" />
+        <NodeLayout
+          Size="102,42"
+          Id="Package\Export presence in zones\Pivot"
+          TopLeft="429,166" />
+        <EdgeLayout
+          Id="Package\Export presence in zones.Paths[Выход преобразования &quot;Сведение&quot; по умолчанию]"
+          TopLeft="481.25,208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Export presence in zones.Paths[PivotSource]"
+          TopLeft="419.5,109">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="60.5,57"
+              Start="0,0"
+              End="60.5,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5"
+                    Point2="0,28.5"
+                    Point3="4,28.5" />
+                  <mssgle:LineSegment
+                    End="56.5,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="56.5,28.5"
+                    Point2="60.5,28.5"
+                    Point3="60.5,32.5" />
+                  <mssgle:LineSegment
+                    End="60.5,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Export presence in zones\presence in zones">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
