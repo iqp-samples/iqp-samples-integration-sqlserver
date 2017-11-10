@@ -14,6 +14,8 @@ This sample demonstrates how to use SQL server integration services and create p
 
 ## Usage
 
+- In SSDT open project file **SSIS-IQP-Tracker.sln** in folder SSIS-IQP-Tracker
+
 - Set the login, password and all report parameters such as siteName, startDate, endDate in 'Parameters' tab. Note that last hour statistic included to report.
 
 <img src="https://github.com/iqp-samples/iqp-samples-integration-sqlserver/blob/master/img/control_flow.jpg?raw=true" alt="start window">
